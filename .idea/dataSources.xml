@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="Rails Notes: production" uuid="718d693c-29db-4cbb-a541-31f1f3bef6a6">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/Notes_production</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails Notes: development" uuid="d2f8116b-667b-4ad9-a738-058b15eccf0f">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/Notes</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails Notes: test" uuid="2bae6820-67e7-436b-8194-29def082b714">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/Notes_test</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="development" uuid="a0ab738b-a9e5-4b7f-970b-daf40104120b">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\milen\Desktop\Notes\db\development.sqlite3</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="test" uuid="7fcd4133-cd40-4e28-bcc5-cd1864f0a683">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\milen\Desktop\Notes\db\test.sqlite3</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails HealthBuddy: development" uuid="bad904da-8a4e-47b0-b113-852a4254181e">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\milen\Desktop\HealthBuddy\db\development.sqlite3</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails HealthBuddy: test" uuid="e2f17365-79fc-4adc-b243-cce7ceb79920">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\milen\Desktop\HealthBuddy\db\test.sqlite3</jdbc-url>
+    </data-source>
+  </component>
+</project>
