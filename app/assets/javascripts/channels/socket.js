@@ -1,4 +1,4 @@
-$(document).ready(() =>App.socket = App.cable.subscriptions.create("SocketChannel", {
+$(document).ready(() => App.socket = App.cable.subscriptions.create("SocketChannel", {
     connected: function() {
     // Called when the subscription is ready for use on the server
     },

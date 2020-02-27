@@ -50,7 +50,7 @@ function validateForm() {
     } else if($(`#${currentPath}_description`).length){
         content = $(`#${currentPath}_description`).val();
     }
-    
+
     let isCorrect = true;
 
     // Specify the errors in the front end
@@ -82,12 +82,17 @@ function validateForm() {
 }
 
 function addMessageContainerInChat(data) {
+    for (var key in data) {
+      if (!data.hasOwnProperty(key)) continue;
+      console.log(data[key]);
+      data[key] = htmlDecode(data[key]);
+      console.log(" - after " + data[key] + "\n");
+    }
     let $messageBox = $('<div class="row mb-2">');
 
     let $messageContentRow = $('<div class="col-12">');
     let $messageContent = $('<div class="col-lg-7 col-md-8 col-sm-9" style="margin-bottom: 0;">');
-    $messageContent.text(data.message_content);
-
+    $messageContent.text(unescape(data.message_content));
     $messageContentRow.append($messageContent);
 
     $messageBox.append($messageContentRow);
@@ -112,6 +117,9 @@ function addMessageContainerInChat(data) {
     $("#chat").animate({ scrollTop: $('#chat').prop("scrollHeight")}, 1000);
 }
 
-
-
-
+function htmlDecode(input){
+    var e = document.createElement('textarea');
+    e.innerHTML = input;
+    // handle case of empty input
+    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+}
