@@ -84,9 +84,7 @@ function validateForm() {
 function addMessageContainerInChat(data) {
     for (var key in data) {
       if (!data.hasOwnProperty(key)) continue;
-      console.log(data[key]);
       data[key] = htmlDecode(data[key]);
-      console.log(" - after " + data[key] + "\n");
     }
     let $messageBox = $('<div class="row mb-2">');
 
