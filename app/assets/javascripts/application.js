@@ -33,7 +33,7 @@ $(document).ready(() => {
 
     //Set current navigation link on header
     $('ul li[controller=' + location.pathname.split("/")[1] + '] a')[0].classList.add('active')
-})
+});
 
 // Validates notebook, note and quick_note in the Front-end
 function validateForm() {

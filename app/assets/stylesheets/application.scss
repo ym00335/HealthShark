@@ -134,6 +134,25 @@ h1 {
   @extend .rounded-img
 }
 
+.rounded-div {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 5px;
+  display: inline-block;
+  @extend .rounded-img;
+}
+
+.message-received {
+  background-color: $dark_blue !important;
+  color: white !important;
+  @extend .rounded-div;
+}
+
+.message-sent {
+  background-color: white;
+  @extend .rounded-div;
+}
+
 .rounded-img{
   border-radius: 15px;
 }

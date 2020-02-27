@@ -12,6 +12,7 @@ en:
   nav_links:
     home_nav_link: Home
     contacts_nav_link: Contacts
+    chat_nav_link: Chat
     edit_profile_nav_link: Edit Profile
     logout_nav_link: Log Out
     login_nav_link: Log In
@@ -19,7 +20,7 @@ en:
 
   footer:
     title: HealthBuddy
-    app_description: A place where you can store all your physical activities, receipes and everything else you want!
+    app_description: A place where you can store all your physical activities, receipes, get helpful tips about how to live a healthier lifestyle and everything else you want!
     creators_name: Milen Georgiev, // Add the rest
     creators_description: Software Engineers and Students at University of Surrey.
 

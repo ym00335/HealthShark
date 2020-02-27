@@ -8,6 +8,6 @@
 (function() {
   this.App || (this.App = {});
 
-  App.cable = ActionCable.createConsumer();
+  App.cable = ActionCable.createConsumer('/chatcable');//$('meta[name=action-cable-url]').attr('content'));
 
 }).call(this);

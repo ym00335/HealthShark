@@ -1,0 +1,25 @@
+<h1>Chat with other users</h1>
+<br/>
+<div id="chat" class="container" style="overflow-y: auto; height:400px; height:400px;">
+  <% @messages.all.each do |message| %>
+    <% if message.sender == current_user %>
+      <div class="row justify-content-end mb-1">
+        <div class="message-sent col-xl-6 col-lg-7 col-md-8 col-sm-9 p-1">
+          <%= message.content + ' sent by ' + message.sender.name + " at " + message.created_at.strftime("%T %d/%m/%y")%>
+        </div>
+      </div>
+    <% else %>
+      <div class="row mb-1">
+        <div class="message-received col-xl-6 col-lg-7 col-md-8 col-sm-9 p-1">
+          <%= message.content + ' sent by ' + message.sender.name + " at " + message.created_at.strftime("%T %d/%m/%y")%>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<hr/>
+<div class="form-group">
+  <label for="message">Send message</label>
+  <input type="text" class="form-control" id="message" placeholder="Enter message">
+</div>
+<button id="send-button" class="btn btn-primary">Send Message</button>
