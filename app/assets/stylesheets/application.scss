@@ -135,11 +135,10 @@ h1 {
 }
 
 .rounded-div {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 5px 15px 5px 15px !important;
   margin-bottom: 5px;
   display: inline-block;
-  @extend .rounded-img;
+  border-radius: 6px;
 }
 
 .message-received {

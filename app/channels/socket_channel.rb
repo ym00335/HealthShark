@@ -11,7 +11,7 @@ class SocketChannel < ApplicationCable::Channel
     message = Message.new(sender: current_user, recipient: current_user, content: data['message'])
     if message.save
       ActionCable.server.broadcast "chat", message_content: data['message'],
-                                  user_name: message.sender.name, received_at: message.created_at.strftime("%FT%T")
+                                  user_name: message.sender.name, received_at: message.created_at.strftime("%T %d/%m/%y")
     end
   end
 end
