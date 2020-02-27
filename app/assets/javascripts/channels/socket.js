@@ -7,7 +7,7 @@ $(document).ready(() => App.socket = App.cable.subscriptions.create("SocketChann
     // Called when the subscription has been terminated by the server
     },
 
-    received: addMessageContainerInChat,
+    received: (data) => addMessageContainerInChat(data, true),
 
     chat: function(message) {
         return this.perform("chat", { message: message } );

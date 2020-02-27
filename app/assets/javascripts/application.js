@@ -81,7 +81,7 @@ function validateForm() {
     return isCorrect;
 }
 
-function addMessageContainerInChat(data) {
+function addMessageContainerInChat(data, shouldScroll) {
     for (var key in data) {
       if (!data.hasOwnProperty(key)) continue;
       data[key] = htmlDecode(data[key]);
@@ -112,7 +112,9 @@ function addMessageContainerInChat(data) {
     }
 
     $('#chat').append($messageBox);
-    $("#chat").animate({ scrollTop: $('#chat').prop("scrollHeight")}, 1000);
+    if (shouldScroll) {
+        $("#chat").animate({ scrollTop: $('#chat').prop("scrollHeight")}, 100);
+    }
 }
 
 function htmlDecode(input){
