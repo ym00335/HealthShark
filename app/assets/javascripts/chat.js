@@ -108,9 +108,8 @@ function createChatMessage(message) {
 
     // Check whether the current user sent the message or they were the one who received it
     if ($("body").attr("data-username") === message.user_name) {
-        $messageContent.addClass("float-right");
         $dataContent.addClass("float-right");
-        $messageContent.addClass("message-sent")
+        $messageContent.addClass("message-sent float-right")
             .append('<hr style="margin: 10px 0 0 0"/><small><img src="/send-by.png" height="25px" alt="sent by"> you</small>');
     } else {
         $messageContent.addClass("message-received")

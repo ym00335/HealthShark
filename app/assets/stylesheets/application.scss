@@ -141,17 +141,6 @@ h1 {
   border-radius: 6px;
 }
 
-.message-received {
-  background-color: $dark_blue !important;
-  color: white !important;
-  @extend .rounded-div;
-}
-
-.message-sent {
-  background-color: white;
-  @extend .rounded-div;
-}
-
 .rounded-img{
   border-radius: 15px;
 }
@@ -324,6 +313,19 @@ p {
   }
 
   scrollbar-color: $medium_blue $light_blue;
+}
+
+.message-received {
+  background-color: $dark_blue !important;
+  color: white !important;
+  @extend .rounded-div;
+  box-shadow: 0 10px 25px $light_blue;
+}
+
+.message-sent {
+  background-color: white;
+  box-shadow: 0 10px 25px $light_blue;
+  @extend .rounded-div;
 }
 
 .dark-blue-svg {
