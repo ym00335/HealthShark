@@ -181,8 +181,17 @@ p {
 }
 
 .left-rounded-img {
-  border-bottom-left-radius: 15px;
   border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 0;
+}
+
+@media (min-width: 768px) {
+  .left-rounded-img {
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 0;
+  }
 }
 
 .bottom-rounded-img {
