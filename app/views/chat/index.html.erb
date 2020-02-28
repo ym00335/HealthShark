@@ -7,7 +7,7 @@
   <% if @messages_count > @messages.length %>
     <div id="up-arrow" class="row justify-content-center mb-3">
       <%= image_tag("svg/arrow-up.svg", :alt => "arrow up", :class => "clickable-img dark-blue-svg pointer",
-                    :onclick => "requestMoreMessages(this)", :height => "40", :width => "40") %>
+                    :onclick => "requestMoreMessages()", :height => "40", :width => "40") %>
     </div>
   <% end %>
   <script type="text/javascript">

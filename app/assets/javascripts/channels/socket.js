@@ -8,10 +8,10 @@ $(document).ready(() => App.socket = App.cable.subscriptions.create("SocketChann
     },
 
     received(data) {
+        // Check the type of action and perform it
         if (data.action === "chat"){
             addMessageContainerOnBottomChat(data, true);
         } else if (data.action === "getPreviousMessages") {
-            console.dir(data)
             addMessageContainersOnTopOfChat(data.messages, data.are_there_more);//attachPreviousMessages(data);
         }
 

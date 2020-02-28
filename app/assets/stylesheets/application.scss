@@ -313,6 +313,8 @@ p {
     background-color: $light_blue;
     border-radius: 4px;
   }
+
+  scrollbar-color: $medium_blue $light_blue;
 }
 
 .dark-blue-svg {
@@ -324,15 +326,22 @@ p {
 }
 
 #loader {
-  border: 8px solid #f3f3f3; /* Light grey */
-  border-top: 8px solid $dark_blue; /* Blue */
+  border: 5px solid #f3f3f3; /* Light grey */
+  border-top: 5px solid $dark_blue;
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  animation: spin 2s linear infinite;
+  -webkit-animation: spin 1s linear infinite; /* Safari */
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
 }

@@ -1,115 +1,122 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
-
-/*window.setInterval(function(){
-    App.socket.chat();
-}, 500);*/
-
+/**
+ * Add on click listeners for the Send Message button and on enter click for
+ * the Message input field
+ */
 $(document).ready(() => {
     let $message = $('#message');
     let $sendMesssageBtn = $('#send-button');
+    // Add onclick listener
     $sendMesssageBtn.click(sendMessage);
 
+    // Add on enter binding
     $message.bind("enterKey",sendMessage);
     $message.keyup(function(e){
         if(e.keyCode === 13)
             $(this).trigger("enterKey");
     });
 
+    /**
+     * Send a message through the websocket
+     * @param e
+     */
     function sendMessage(e){
         if ($message.val()) {
             App.socket.chat($message.val());
         }
     }
-
-    $("#chat").animate({ scrollTop: $('#chat').prop("scrollHeight")}, 1000);
 });
 
-function addMessageContainerOnBottomChat(data, shouldScroll) {
-    for (var key in data) {
-        if (!data.hasOwnProperty(key)) continue;
-        data[key] = htmlDecode(data[key]);
+/**
+ * Add a message container on the bottom of the currently displayed ones.
+ * @param message message object
+ * @param shouldScroll do we have to scroll to the bottom of the chat container
+ */
+function addMessageContainerOnBottomChat(message, shouldScroll) {
+    // Append the new message in the end of the chat with animation and a scrolling callback
+    $('#chat').append(createChatMessage(message).hide().show(600, () => {
+        if (shouldScroll) {
+            // Scroll to the bottom with animation
+            $("#chat").animate({ scrollTop: $('#chat').prop("scrollHeight")}, 1500);
+        }
+    }));
+}
+
+/**
+ * Requests for more messages send in the past to be displayed to the user.
+ */
+function requestMoreMessages() {
+    // Hide the arrow calling the method
+    $('#up-arrow').hide();
+
+    // Show the loader
+    $('#loader-container').show();
+
+    // Get the first displayed message
+    const firstMessage = $("#chat").children()
+        .filter((index, element) => element.classList.contains('message-box'))[0];
+
+    // Get its date and send it through the socket
+    const firstMessageDate = $(firstMessage).children()[1].firstChild.innerText;
+    App.socket.getPreviousMessages(firstMessageDate);
+}
+
+/**
+ * Add a message container on top of the currently displayed ones.
+ * @param messages messages objects
+ * @param are_there_more are there more in the server
+ */
+function addMessageContainersOnTopOfChat(messages, are_there_more) {
+    for (const message of messages.reverse()) {
+        // For each message -> create message container and prepend with animation
+        createChatMessage(message).insertAfter($('#up-arrow')).hide().show('slow');
     }
-    const $messageBox = $('<div class="row mb-2">');
+
+    // Hide loading
+    $('#loader-container').hide();
+
+    // If there are more messages show to arrow-up
+    if (are_there_more) {
+        $('#up-arrow').show();
+    }
+}
+
+/**
+ * Create a chat message HTML fragment
+ * @param message the message object
+ * @returns {jQuery.fn.init|jQuery|HTMLElement} the newly created HTML fragment using jQuery
+ */
+function createChatMessage(message) {
+    for (const key in message) {
+        // Decode all encoded characters, because $.text will decode them again
+        if (!message.hasOwnProperty(key)) continue;
+        message[key] = htmlDecode(message[key]);
+    }
+    const $messageBox = $('<div class="row mb-2 message-box">');
 
     const $messageContentRow = $('<div class="col-12">');
     const $messageContent = $('<div class="col-lg-7 col-md-8 col-sm-9" style="margin-bottom: 0;">');
-    $messageContent.text(data.message_content);
+    $messageContent.text(message.message_content);
     $messageContentRow.append($messageContent);
 
     $messageBox.append($messageContentRow);
 
     const $dataContentRow = $('<div class="col-12">');
-    const $dataContent = $('<div style="font-size: 10pt">').text(data.received_at);
+    const $dataContent = $('<div style="font-size: 10pt">').text(message.received_at);
     $dataContentRow.append($dataContent);
 
     $messageBox.append($dataContentRow);
 
-    if ($("body").attr("data-username") === data.user_name) {
+    // Check whether the current user sent the message or they were the one who received it
+    if ($("body").attr("data-username") === message.user_name) {
         $messageContent.addClass("float-right");
         $dataContent.addClass("float-right");
         $messageContent.addClass("message-sent")
             .append('<hr style="margin: 10px 0 0 0"/><small><img src="/send-by.png" height="25px" alt="sent by"> you</small>');
     } else {
         $messageContent.addClass("message-received")
-            .append(`<hr style="margin: 10px 0 0 0"/><small><img src="/receive-by.png" height="25px" alt="receive by"> ${data.user_name}<small>`);
+            .append(`<hr style="margin: 10px 0 0 0"/><small><img src="/receive-by.png" height="25px" alt="receive by"> ${message.user_name}<small>`);
     }
 
-    $('#chat').append($messageBox);
-    if (shouldScroll) {
-        $("#chat").animate({ scrollTop: $('#chat').prop("scrollHeight")}, 100);
-    }
-}
-
-function requestMoreMessages(arrow) {
-    $('#up-arrow').hide();
-    $('#loader-container').show();
-    const firstMessage = $("#chat").children()
-        .filter((index, element) => element.id !== "up-arrow" && element.id !== "loader-container"
-            && element.type !== "text/javascript")[0];
-    const firstMessageDate = $(firstMessage).children()[1].firstChild.innerText;
-    App.socket.getPreviousMessages(firstMessageDate);
-}
-
-function addMessageContainersOnTopOfChat(messages, are_there_more) {
-    for (const message of messages.reverse())
-    {
-        for (const key in message) {
-            if (!message.hasOwnProperty(key)) continue;
-            message[key] = htmlDecode(message[key]);
-        }
-        const $messageBox = $('<div class="row mb-2">');
-
-        const $messageContentRow = $('<div class="col-12">');
-        const $messageContent = $('<div class="col-lg-7 col-md-8 col-sm-9" style="margin-bottom: 0;">');
-        $messageContent.text(message.message_content);
-        $messageContentRow.append($messageContent);
-
-        $messageBox.append($messageContentRow);
-
-        const $dataContentRow = $('<div class="col-12">');
-        const $dataContent = $('<div style="font-size: 10pt">').text(message.received_at);
-        $dataContentRow.append($dataContent);
-
-        $messageBox.append($dataContentRow);
-
-        if ($("body").attr("data-username") === message.user_name) {
-            $messageContent.addClass("float-right");
-            $dataContent.addClass("float-right");
-            $messageContent.addClass("message-sent")
-                .append('<hr style="margin: 10px 0 0 0"/><small><img src="/send-by.png" height="25px" alt="sent by"> you</small>');
-        } else {
-            $messageContent.addClass("message-received")
-                .append(`<hr style="margin: 10px 0 0 0"/><small><img src="/receive-by.png" height="25px" alt="receive by"> ${message.user_name}<small>`);
-        }
-
-        $messageBox.insertAfter($('#up-arrow'));
-    }
-
-    $('#loader-container').hide();
-
-    if (are_there_more) {
-        $('#up-arrow').show();
-    }
+    return $messageBox;
 }
 

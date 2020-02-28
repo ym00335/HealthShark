@@ -1,7 +1,7 @@
 class SocketChannel < ApplicationCable::Channel
   def subscribed
     stream_from "chat"
-    stream_from "getPreviousMessages"
+    stream_from "getPreviousMessages_#{current_user.id}"
   end
 
   def unsubscribed
@@ -28,6 +28,6 @@ class SocketChannel < ApplicationCable::Channel
       puts obj.inspect
       dto[:messages].push(obj)
     end
-    ActionCable.server.broadcast "getPreviousMessages", dto
+    ActionCable.server.broadcast "getPreviousMessages_#{current_user.id}", dto
   end
 end
