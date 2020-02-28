@@ -1,11 +1,20 @@
-<h1>Chat with other users</h1>
-<br/>
+<h1>Global chat</h1>
+<hr/>
 <div id="chat" class="container" style="">
+  <div id="loader-container" class="row justify-content-center mb-3" style="display: none;">
+    <div id="loader"></div>
+  </div>
+  <% if @messages_count > @messages.length %>
+    <div id="up-arrow" class="row justify-content-center mb-3">
+      <%= image_tag("svg/arrow-up.svg", :alt => "arrow up", :class => "clickable-img dark-blue-svg pointer",
+                    :onclick => "requestMoreMessages(this)", :height => "40", :width => "40") %>
+    </div>
+  <% end %>
   <script type="text/javascript">
       $(document).ready(() =>
       {
-        <% @messages.all.each do |message| %>
-        addMessageContainerInChat({
+        <% @messages.each do |message| %>
+          addMessageContainerOnBottomChat({
             message_content: "<%= message.content %>",
             received_at: "<%= message.created_at.strftime("%T %d/%m/%y") %>",
             user_name: "<%= message.sender.name %>"

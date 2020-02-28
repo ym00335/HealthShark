@@ -81,42 +81,6 @@ function validateForm() {
     return isCorrect;
 }
 
-function addMessageContainerInChat(data, shouldScroll) {
-    for (var key in data) {
-      if (!data.hasOwnProperty(key)) continue;
-      data[key] = htmlDecode(data[key]);
-    }
-    let $messageBox = $('<div class="row mb-2">');
-
-    let $messageContentRow = $('<div class="col-12">');
-    let $messageContent = $('<div class="col-lg-7 col-md-8 col-sm-9" style="margin-bottom: 0;">');
-    $messageContent.text(unescape(data.message_content));
-    $messageContentRow.append($messageContent);
-
-    $messageBox.append($messageContentRow);
-
-    let $dataContentRow = $('<div class="col-12">');
-    let $dataContent = $('<div style="font-size: 10pt">').text(data.received_at);
-    $dataContentRow.append($dataContent);
-
-    $messageBox.append($dataContentRow);
-
-    if ($("body").attr("data-username") === data.user_name) {
-        $messageContent.addClass("float-right");
-        $dataContent.addClass("float-right");
-        $messageContent.addClass("message-sent")
-            .append('<hr style="margin: 10px 0 0 0"/><small><img src="/send-by.png" height="25px" alt="sent by"> you</small>');
-    } else {
-        $messageContent.addClass("message-received")
-            .append(`<hr style="margin: 10px 0 0 0"/><small><img src="/receive-by.png" height="25px" alt="receive by"> ${data.user_name}<small>`);
-    }
-
-    $('#chat').append($messageBox);
-    if (shouldScroll) {
-        $("#chat").animate({ scrollTop: $('#chat').prop("scrollHeight")}, 100);
-    }
-}
-
 function htmlDecode(input){
     var e = document.createElement('textarea');
     e.innerHTML = input;
