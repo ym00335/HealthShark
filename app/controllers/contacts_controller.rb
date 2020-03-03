@@ -1,7 +1,7 @@
 class ContactsController < ApplicationController
   # Authenticate the user before each action.
   before_action :authenticate_user!
-
+  caches_action :index
 
   def index
     # Create a new Mail to fill the forms with.
