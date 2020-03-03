@@ -5,7 +5,8 @@ class ChatController < ApplicationController
   caches_action :index, expires_in: 1.minute
 
   def index
-    @messages = Message.order(created_at: :asc).all
+    @messages_count = Message.count
+    @messages = Message.order(created_at: :asc).last(5)
   end
 
   def subscribe
