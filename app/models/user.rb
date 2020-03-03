@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # Name, email and message must not be empty
-  validates :name, :email, :password, presence: true
+  validates :name, :email, presence: true
 
   # Regex validating a correct Email address (constant)
   EMAIL_REGEX = %r{\A[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\Z}.freeze
@@ -18,4 +18,6 @@ class User < ApplicationRecord
 
   has_many :sent_messages, :class_name => 'Message', :foreign_key => 'sender_id'
   has_many :received_messages, :class_name => 'Message', :foreign_key => 'recipient_id'
+
+  mount_uploader :image, ImageUploader
 end

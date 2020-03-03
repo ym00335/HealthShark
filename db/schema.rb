@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_25_213753) do
+ActiveRecord::Schema.define(version: 2020_03_02_225019) do
 
   create_table "messages", force: :cascade do |t|
     t.text "content", null: false
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2020_02_25_213753) do
     t.string "name"
     t.datetime "date_of_birth"
     t.boolean "is_female"
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -2,7 +2,7 @@ class SocketChannel < ApplicationCable::Channel
   def subscribed
     stream_from "chat"
     stream_from "getPreviousMessages_#{current_user.id}"
-  end
+end
 
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
@@ -25,7 +25,6 @@ class SocketChannel < ApplicationCable::Channel
     messages.each do |message|
       obj = {message_content: message.content,
              user_name: message.sender.name, received_at: message.created_at.strftime("%T %d/%m/%y")}
-      puts obj.inspect
       dto[:messages].push(obj)
     end
     ActionCable.server.broadcast "getPreviousMessages_#{current_user.id}", dto

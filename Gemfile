@@ -12,6 +12,8 @@ gem 'normalize-rails'
 
 gem 'modernizr-rails'
 
+gem 'carrierwave'
+
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -23,7 +25,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
-gem 'devise'
+gem 'devise', '4.7.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
