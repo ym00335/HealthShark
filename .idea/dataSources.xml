@@ -53,5 +53,21 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:C:\Users\milen\Desktop\HealthBuddy\db\test.sqlite3</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="Rails HealthShark: test" uuid="141ddbfc-16d8-4c9f-8de8-0ac848a7a239">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\milen\Desktop\HealthShark\db\test.sqlite3</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails HealthShark: development" uuid="6063b2e3-5c1f-4fdc-bb04-208e73070dd3">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\milen\Desktop\HealthShark\db\development.sqlite3</jdbc-url>
+    </data-source>
   </component>
 </project>

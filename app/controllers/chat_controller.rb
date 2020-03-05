@@ -12,4 +12,13 @@ class ChatController < ApplicationController
   def subscribe
 
   end
+
+
+  def self.get_chat_image_url_from_user(user)
+    if user.image.present?
+      user.image.url
+    else
+      ActionController::Base.helpers.asset_url('default-user-img.png', type: :image)
+    end
+  end
 end

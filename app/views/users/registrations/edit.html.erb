@@ -8,7 +8,6 @@
       <%= if current_user.image.present?
             image_tag current_user.image_url, class: 'img-thumbnail', size: "200x200"
           else
-            # Assuming you have a default.jpg in your assets folder
             image_tag 'default-user-img.png', class: 'img-thumbnail', size: "200x200"
           end %>
       <figcaption class="figure-caption">

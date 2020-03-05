@@ -20,6 +20,14 @@
     </ul>
     <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= if current_user.image.present?
+              link_to (image_tag current_user.image_url, class: 'rounded-circle', size: "40x40"), edit_user_registration_path
+            else
+              # Assuming you have a default.jpg in your assets folder
+              link_to (image_tag 'default-user-img.png', class: 'rounded-circle', size: "40x40"), edit_user_registration_path
+            end %>
+        </li>
         <li controller="users" class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><%= current_user.email %></strong></a>
           <div class="dropdown-menu">

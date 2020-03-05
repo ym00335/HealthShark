@@ -11,7 +11,7 @@ $(document).ready(() => App.socket = App.cable.subscriptions.create("SocketChann
         // Check the type of action and perform it
         if (data.action === "chat"){
             addMessageContainerOnBottomChat(data, true);
-        } else if (data.action === "getPreviousMessages") {
+        } else if (data.action === "get_previous_messages") {
             addMessageContainersOnTopOfChat(data.messages, data.are_there_more);//attachPreviousMessages(data);
         }
 
@@ -22,7 +22,7 @@ $(document).ready(() => App.socket = App.cable.subscriptions.create("SocketChann
     },
 
     getPreviousMessages(date){
-        this.perform("getPreviousMessages", { before: date });
+        this.perform("get_previous_messages", { before: date });
     }
 
 }));

@@ -11,7 +11,7 @@ class User < ApplicationRecord
   EMAIL_REGEX = %r{\A[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\Z}.freeze
 
   # The email must follow the format specified by the regex
-  validates :email, format: {with: EMAIL_REGEX, message: I18n.t('email_validation_feedback') }
+  validates :email, format: {with: EMAIL_REGEX, message: I18n.t('email_validation_feedback') }, uniqueness: true
 
   # A user may sent many emails
   has_many :sent_mails
