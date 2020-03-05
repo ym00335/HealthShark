@@ -1,5 +1,5 @@
 en:
-  app_title: HealthBuddy
+  app_title: HealthShark
 
   address:
     title: Address of our team
@@ -19,7 +19,7 @@ en:
     register_nav_link: Register
 
   footer:
-    title: HealthBuddy
+    title: HealthShark
     app_description: A place where you can store all your physical activities, receipes, get helpful tips about how to live a healthier lifestyle and everything else you want!
     creators_name: Milen Georgiev, // Add the rest
     creators_description: Software Engineers and Students at University of Surrey.
@@ -43,7 +43,7 @@ en:
 
   home:
     title: Home
-    second_paragraph: HealthBuddy is an application, which provides a variety of features in order for you to become the best version of yourself. Try it and you will be amazed. Everyone deserves to be in the best shape and to be happy!
+    second_paragraph: HealthShark is an application, which provides a variety of features in order for you to become the best version of yourself. Try it and you will be amazed. Everyone deserves to be in the best shape and to be happy!
     third_paragraph: How you can use this application is only up to you. We hope that you will like it and use it in what way suits you.
 
   contacts:
