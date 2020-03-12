@@ -14,9 +14,11 @@ en:
     contacts_nav_link: Contacts
     chat_nav_link: Chat
     edit_profile_nav_link: Edit Profile
-    logout_nav_link: Log Out
-    login_nav_link: Log In
+    signout_nav_link: Sign Out
+    signin_nav_link: Sign In
     register_nav_link: Register
+    global_chat_nav_link: "Global Chat"
+    discussions_nav_link: "Discussions"
 
   footer:
     title: HealthShark

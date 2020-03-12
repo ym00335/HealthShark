@@ -1,4 +1,4 @@
-class ChatController < ApplicationController
+class GlobalChatController < ApplicationController
   before_action :authenticate_user!
   include ActionController::Live
 
@@ -6,7 +6,7 @@ class ChatController < ApplicationController
 
   def index
     @messages_count = Message.count
-    @messages = Message.order(created_at: :asc).last(5)
+    @messages = Message.where("discussion_id IS NULL").order(created_at: :asc).last(5)
   end
 
   def subscribe
@@ -14,7 +14,7 @@ class ChatController < ApplicationController
   end
 
 
-  def self.get_chat_image_url_from_user(user)
+  def self.get_chat_image_url(user)
     if user.image.present?
       user.image.url
     else

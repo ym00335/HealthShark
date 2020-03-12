@@ -9,16 +9,16 @@ $(document).ready(() => App.socket = App.cable.subscriptions.create("SocketChann
 
     received(data) {
         // Check the type of action and perform it
-        if (data.action === "chat"){
+        if (data.action === "global_chat"){
             addMessageContainerOnBottomChat(data, true);
         } else if (data.action === "get_previous_messages") {
-            addMessageContainersOnTopOfChat(data.messages, data.are_there_more);//attachPreviousMessages(data);
+            addMessageContainersOnTopOfChat(data.messages, data.are_there_more);
         }
 
     },
 
-    chat(message){
-        this.perform("chat", { message: message });
+    global_chat(message){
+        this.perform("global_chat", { message: message });
     },
 
     getPreviousMessages(date){

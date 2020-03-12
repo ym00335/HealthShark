@@ -13,9 +13,14 @@ Rails.application.routes.draw do
   root :to => redirect('home/index')
 
   authenticate do
+    resources :discussions
+
     # Specify the custom routes
-    get 'chat/index'
-    get 'chat/subscribe'
+    get 'global_chat/index'
+    get 'global_chat/subscribe'
+
+    get 'discussions/subscribe'
+
     get 'contacts/index'
     post 'mail/send', to: 'contacts#send_mail'
   end

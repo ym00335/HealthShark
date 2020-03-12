@@ -1,0 +1,8 @@
+<h1>Discussions</h1>
+
+
+<% @discussions.each do |discussion| %>
+  <%= render 'discussion', discussion: discussion, show_messages: false %>
+<% end %>
+
+<%= link_to 'New Discussion', new_discussion_path, :class => 'btn btn-primary', :role => 'button'  %>

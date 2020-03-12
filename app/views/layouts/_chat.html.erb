@@ -1,0 +1,29 @@
+<div id="chat" class="container" style="">
+<div id="loader-container" class="row justify-content-center mb-3" style="display: none;">
+  <div id="loader"></div>
+</div>
+<% if messages_count > messages.length %>
+  <div id="up-arrow" class="row justify-content-center mb-3">
+    <%= image_tag("svg/arrow-up.svg", :alt => "arrow up", :class => "clickable-img dark-blue-svg pointer",
+                  :onclick => "requestMoreMessages()", :height => "40", :width => "40") %>
+  </div>
+<% end %>
+<script type="text/javascript">
+    $(document).ready(() =>
+    {
+        <% messages.each do |message| %>
+        addMessageContainerOnBottomChat({
+            message_content: "<%= message.content %>",
+            received_at: "<%= message.created_at.strftime("%T %d/%m/%y") %>",
+            user_name: "<%= message.sender.name %>",
+            user_image: '<%= GlobalChatController.get_chat_image_url(message.sender) %>'
+        }, <%= message == messages.last %>);
+        <% end %>
+    });
+</script>
+</div>
+<hr/>
+<div class="form-group">
+  <input type="text" class="form-control" id="message" placeholder="Enter message">
+</div>
+<button id="send-button" class="btn btn-primary">Send Message</button>

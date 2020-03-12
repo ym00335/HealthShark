@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_02_225019) do
+ActiveRecord::Schema.define(version: 2020_03_11_220225) do
+
+  create_table "discussions", force: :cascade do |t|
+    t.text "topic", null: false
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "owner_id", null: false
+    t.index ["owner_id"], name: "index_discussions_on_owner_id"
+  end
 
   create_table "messages", force: :cascade do |t|
     t.text "content", null: false
@@ -18,6 +27,8 @@ ActiveRecord::Schema.define(version: 2020_03_02_225019) do
     t.datetime "updated_at", null: false
     t.integer "sender_id", null: false
     t.integer "recipient_id", null: false
+    t.integer "discussion_id"
+    t.index ["discussion_id"], name: "index_messages_on_discussion_id"
     t.index ["recipient_id"], name: "index_messages_on_recipient_id"
     t.index ["sender_id"], name: "index_messages_on_sender_id"
   end

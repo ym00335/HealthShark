@@ -1,30 +1,96 @@
-/**
- * Add on click listeners for the Send Message button and on enter click for
- * the Message input field
- */
-$(document).ready(function()  {
-    let $message = $('#message');
-    let $sendMesssageBtn = $('#send-button');
-    // Add onclick listener
-    $sendMesssageBtn.click(sendMessage);
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, or any plugin's
+// vendor/assets/javascripts directory can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// compiled file. JavaScript code in this file should be added after the last require_* statement.
+//
+// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
+// about supported directives.
+//
+//= require jquery3
+//= require bootstrap-sprockets
+//= require cookiealert
+//= require jquery_ujs
+//= require_tree .
 
-    // Add on enter binding
-    $message.bind("enterKey",sendMessage);
-    $message.keyup(function(e){
-        if(e.keyCode === 13)
-            $(this).trigger("enterKey");
-    });
+$(document).ready(function () {
+    //Show cookie notice.
+    showCookieNotice();
 
-    /**
-     * Send a message through the websocket
-     * @param e
-     */
-    function sendMessage(e){
-        if ($message.val()) {
-            App.socket.chat($message.val());
-        }
+    // Remove alerts after 2 seconds
+    window.setTimeout(function() {
+        $alerts = $(".alert").filter(function (index, element) {
+            return !element.classList.contains('cookiealert');
+        });
+
+        $alerts.fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 2000);
+
+    //Set current navigation link on header
+    let controller = location.pathname.split('/')[1];
+    if (controller === 'discussions' || controller === 'global_chat') {
+        controller = 'chat';
     }
+    $(`ul li[controller=${controller}] a`)[0].classList.add('active')
 });
+
+// Validates notebook, note and quick_note in the Front-end
+function validateForm() {
+    // Extract the values of the form elements
+    let currentPath = location.pathname.split("/")[1];
+    currentPath = currentPath.substring(0, currentPath.length - 1)
+
+    const title = $(`#${currentPath}_title`).val();
+    let content;
+
+    // Because the content column in notebooks is called description.
+    if($(`#${currentPath}_content`).length){
+        content = $(`#${currentPath}_content`).val();
+    } else if($(`#${currentPath}_description`).length){
+        content = $(`#${currentPath}_description`).val();
+    }
+
+    let isCorrect = true;
+
+    // Specify the errors in the front end
+    if (!title) {
+        $('#title-error').text('Title must not be empty!');
+        isCorrect = false;
+    } else {
+        $('#title-error').text('');
+    }
+
+    if(!content || typeof content === "undefined") {
+        $('#content-error').text('Content must not be empty!');
+        isCorrect = false;
+    } else {
+        $('#content-error').text('');
+    }
+
+    // Either submit the form or make the button clickable after half a second.
+    if (isCorrect) {
+        $('form')[0].submit();
+    } else{
+        $('.invalid-feedback').css('display', 'block');
+        setTimeout(function () {
+            $('input[type=submit]').removeAttr('disabled');
+        }, 500);
+    }
+
+    return isCorrect;
+}
+
+function htmlDecode(input){
+    var e = document.createElement('textarea');
+    e.innerHTML = input;
+    // handle case of empty input
+    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+}
 
 /**
  * Add a message container on the bottom of the currently displayed ones.
@@ -95,7 +161,7 @@ function createChatMessage(message) {
 
     const $messageContentRow = $('<div class="col-12">');
     const $messageContent = $('<div class="col-lg-7 col-md-8 col-sm-9" style="margin-bottom: 0;">');
-    $messageContent.append(`<img src="${message.user_image}" class="rounded-circle mr-2 mt-1" height="40" width="40"/>`).append(message.message_content);
+    $messageContent.append(`<img src="${message.user_image}" class="rounded-circle mr-2 mt-1" height="40" width="40" alt="user image"/>`).append(message.message_content);
     $messageContentRow.append($messageContent);
 
     $messageBox.append($messageContentRow);

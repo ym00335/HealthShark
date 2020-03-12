@@ -1,0 +1,12 @@
+// Place all the styles related to the discussions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "application";
+
+.discussion{
+  background-color: whitesmoke;
+  padding: 5% 10% 5% 10% !important;
+  height: 90% !important;
+  @extend .rounded-img
+}

@@ -14,32 +14,36 @@
       <li controller="contacts" class="nav-item">
         <%= link_to t('nav_links.contacts_nav_link'), contacts_index_url, :class => 'nav-link' %>
       </li>
-      <li controller="chat" class="nav-item">
-        <%= link_to t('nav_links.chat_nav_link'), chat_index_url, :class => 'nav-link' %>
+      <li controller="chat" class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= t('nav_links.chat_nav_link') %></a>
+        <div class="dropdown-menu">
+          <%= link_to t('nav_links.global_chat_nav_link'), global_chat_index_path, :class => 'dropdown-item' %>
+          <%= link_to t('nav_links.discussions_nav_link'), discussions_path, :class => 'dropdown-item' %>
+        </div>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
         <li class="nav-item">
           <%= if current_user.image.present?
-              link_to (image_tag current_user.image_url, class: 'rounded-circle', size: "40x40"), edit_user_registration_path
+              link_to (image_tag current_user.image_url, class: 'rounded-circle mt-1', size: "40x40"), edit_user_registration_path
             else
               # Assuming you have a default.jpg in your assets folder
-              link_to (image_tag 'default-user-img.png', class: 'rounded-circle', size: "40x40"), edit_user_registration_path
+              link_to (image_tag 'default-user-img.png', class: 'rounded-circle mt-1', size: "40x40"), edit_user_registration_path
             end %>
         </li>
         <li controller="users" class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><%= current_user.email %></strong></a>
           <div class="dropdown-menu">
             <%= link_to t('nav_links.edit_profile_nav_link'), edit_user_registration_path, :class => 'dropdown-item' %>
-            <%= link_to t('nav_links.logout_nav_link'), destroy_user_session_path, method: :delete, :class => 'dropdown-item' %>
+            <%= link_to t('nav_links.signout_nav_link'), destroy_user_session_path, method: :delete, :class => 'dropdown-item' %>
           </div>
         </li>
       <% else %>
         <li controller="users" class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Not Signed</strong></a>
           <div class="dropdown-menu">
-            <%= link_to t('nav_links.login_nav_link'), new_user_session_path, :class => 'dropdown-item' %>
+            <%= link_to t('nav_links.signin_nav_link'), new_user_session_path, :class => 'dropdown-item' %>
             <%= link_to t('nav_links.register_nav_link'), new_user_registration_path, :class => 'dropdown-item' %>
           </div>
         </li>
