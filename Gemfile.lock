@@ -128,10 +128,11 @@ GEM
     orm_adapter (0.5.0)
     popper_js (1.16.0)
     public_suffix (4.0.3)
-    puma (3.12.3)
+    puma (3.12.4)
     rack (2.2.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    railroady (1.5.3)
     rails (5.2.4.1)
       actioncable (= 5.2.4.1)
       actionmailer (= 5.2.4.1)
@@ -240,6 +241,7 @@ DEPENDENCIES
   modernizr-rails
   normalize-rails
   puma (~> 3.11)
+  railroady
   rails (~> 5.2.4)
   rails-controller-testing
   sass-rails (~> 5.0)
@@ -250,7 +252,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 RUBY VERSION
-   ruby 2.5.1p57
+   ruby 2.6.5p114
 
 BUNDLED WITH
    1.17.3
