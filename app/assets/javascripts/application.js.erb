@@ -96,8 +96,10 @@ function htmlDecode(input){
  * Add a message container on the bottom of the currently displayed ones.
  * @param message message object
  * @param shouldScroll do we have to scroll to the bottom of the chat container
+ * @param incrementMessageCounter whether the function should try to increment the total messages
+ * count
  */
-function addMessageContainerOnBottomChat(message, shouldScroll) {
+function addMessageContainerOnBottomChat(message, shouldScroll, incrementMessageCounter) {
     // Append the new message in the end of the chat with animation and a scrolling callback
     $('#chat').append(createChatMessage(message).hide().show(600, function() {
         if (shouldScroll) {
@@ -105,12 +107,20 @@ function addMessageContainerOnBottomChat(message, shouldScroll) {
             $("#chat").animate({ scrollTop: $('#chat').prop("scrollHeight")}, 1500);
         }
     }));
+
+    if (incrementMessageCounter) {
+        // Update the value of total messages if the current view is for a discussion
+        const messagesCount = $('#messages-count');
+        if (messagesCount) {
+            messagesCount.text(parseInt(messagesCount.text()) + 1);
+        }
+    }
 }
 
 /**
  * Requests for more messages send in the past to be displayed to the user.
  */
-function requestMoreMessages() {
+function requestMoreMessages(discussion_id) {
     // Hide the arrow calling the method
     $('#up-arrow').hide();
 
@@ -123,7 +133,12 @@ function requestMoreMessages() {
 
     // Get its date and send it through the socket
     const firstMessageDate = $(firstMessage).children()[1].firstChild.innerText;
-    App.socket.getPreviousMessages(firstMessageDate);
+
+    if (discussion_id) {
+        App.socket.getPreviousDiscussionMessages(firstMessageDate, discussion_id);
+    } else {
+        App.socket.getPreviousGlobalMessages(firstMessageDate);
+    }
 }
 
 /**

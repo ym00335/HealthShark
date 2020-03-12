@@ -5,9 +5,12 @@
 //= require_self
 //= require_tree ./channels
 
+/**
+ * Creates the WebSocket objects
+ */
 (function() {
   this.App || (this.App = {});
 
-  App.cable = ActionCable.createConsumer('/chatcable');//$('meta[name=action-cable-url]').attr('content'));
+  App.cable = ActionCable.createConsumer('/chatcable');
 
 }).call(this);

@@ -30,6 +30,8 @@ class DiscussionsController < ApplicationController
   # POST /discussions.json
   def create
     @discussion = Discussion.new(discussion_params)
+
+    # Set the current user to be the owner of the new Discussion
     @discussion.owner = current_user
 
     respond_to do |format|
@@ -44,9 +46,11 @@ class DiscussionsController < ApplicationController
   # PATCH/PUT /discussions/1
   # PATCH/PUT /discussions/1.json
   def update
+    # Only allow the update if the owner of the discussion is the current user
     if @discussion.owner.id != current_user.id
       not_found
     end
+
     respond_to do |format|
       if @discussion.update(discussion_params)
         format.html { redirect_to @discussion, notice: 'Discussion was successfully updated.' }
@@ -59,9 +63,11 @@ class DiscussionsController < ApplicationController
   # DELETE /discussions/1
   # DELETE /discussions/1.json
   def destroy
+    # Only allow the destroy if the owner of the discussion is the current user
     if @discussion.owner.id != current_user.id
       not_found
     end
+
     @discussion.destroy
     respond_to do |format|
       format.html { redirect_to discussions_url, notice: 'Discussion was successfully destroyed.' }
@@ -69,10 +75,12 @@ class DiscussionsController < ApplicationController
   end
 
   def subscribe
-
+    # Necessary for subscribing to the Action Cable (WebSocket) for the real time discussion connection
   end
 
-  def self.get_discussion_image_url(discussion)
+  def self.get_discussion_image_path(discussion)
+    # Get the image path of a discussion or the default discussion image path
+    # if the discussion does not have a custom image
     if discussion.image.present?
       discussion.image.url
     else

@@ -1,28 +1,56 @@
-$(document).ready(() => App.socket = App.cable.subscriptions.create("SocketChannel", {
-    connected() {
-    // Called when the subscription is ready for use on the server
-    },
+$(document).ready(() => {
+    // If the user is in a discussion - extract the discussion id by a hidden discussion-id input
+    const discussion_id = $('#discussion-id');
 
-    disconnected() {
-    // Called when the subscription has been terminated by the server
-    },
+    // Create a connection object
+    let connection = {
+        channel: "SocketChannel"
+    };
 
-    received(data) {
-        // Check the type of action and perform it
-        if (data.action === "global_chat"){
-            addMessageContainerOnBottomChat(data, true);
-        } else if (data.action === "get_previous_messages") {
-            addMessageContainersOnTopOfChat(data.messages, data.are_there_more);
-        }
-
-    },
-
-    global_chat(message){
-        this.perform("global_chat", { message: message });
-    },
-
-    getPreviousMessages(date){
-        this.perform("get_previous_messages", { before: date });
+    // If the message is for a discussion -> add the discussion_id to the socket
+    // for the back-end to distinguish thet the message is for a discussion
+    if (discussion_id.val()) {
+        connection.discussion_id = discussion_id.val();
     }
 
-}));
+    App.socket = App.cable.subscriptions.create(connection, {
+        connected() {
+            // Called when the subscription is ready for use on the server
+        },
+
+        disconnected() {
+            // Called when the subscription has been terminated by the server
+        },
+
+        received(data) {
+            // Check the type of action and perform it
+            if (data.action === "global_chat") {
+                addMessageContainerOnBottomChat(data, true);
+            } else if (data.action === "get_previous_global_messages") {
+                addMessageContainersOnTopOfChat(data.messages, data.are_there_more);
+            } else if (data.action === "discussion_chat") {
+                addMessageContainerOnBottomChat(data, true, true);
+            } else if (data.action === "get_previous_disc_messages") {
+                addMessageContainersOnTopOfChat(data.messages, data.are_there_more);
+            }
+
+        },
+
+        global_chat(message){
+            this.perform("global_chat", { message: message });
+        },
+
+        getPreviousGlobalMessages(date){
+            this.perform("get_previous_global_messages", { before: date });
+        },
+
+        discussion(message, discussion_id) {
+            this.perform("discussion_chat", { message: message, discussion_id: discussion_id });
+        },
+
+        getPreviousDiscussionMessages(date, discussion_id) {
+            this.perform("get_previous_disc_messages", { before: date, discussion_id: discussion_id });
+        }
+
+    })
+});

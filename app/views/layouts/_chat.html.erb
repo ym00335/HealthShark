@@ -4,8 +4,13 @@
 </div>
 <% if messages_count > messages.length %>
   <div id="up-arrow" class="row justify-content-center mb-3">
-    <%= image_tag("svg/arrow-up.svg", :alt => "arrow up", :class => "clickable-img dark-blue-svg pointer",
-                  :onclick => "requestMoreMessages()", :height => "40", :width => "40") %>
+    <% if defined?(discussion_id) %>
+      <%= image_tag("svg/arrow-up.svg", :alt => "arrow up", :class => "clickable-img dark-blue-svg pointer",
+                    :onclick => "requestMoreMessages(#{discussion_id})", :height => "40", :width => "40") %>
+    <% else %>
+      <%= image_tag("svg/arrow-up.svg", :alt => "arrow up", :class => "clickable-img dark-blue-svg pointer",
+                    :onclick => "requestMoreMessages()", :height => "40", :width => "40") %>
+    <% end %>
   </div>
 <% end %>
 <script type="text/javascript">
@@ -16,7 +21,7 @@
             message_content: "<%= message.content %>",
             received_at: "<%= message.created_at.strftime("%T %d/%m/%y") %>",
             user_name: "<%= message.sender.name %>",
-            user_image: '<%= GlobalChatController.get_chat_image_url(message.sender) %>'
+            user_image: '<%= GlobalChatController.get_chat_image_path(message.sender) %>'
         }, <%= message == messages.last %>);
         <% end %>
     });

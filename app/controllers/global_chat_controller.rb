@@ -5,16 +5,20 @@ class GlobalChatController < ApplicationController
   caches_action :index, expires_in: 1.minute
 
   def index
-    @messages_count = Message.count
+    # The count of all global chat messages
+    @messages_count = Message.where("discussion_id IS NULL").count
+
+    # The last 5 of the global chat messages
     @messages = Message.where("discussion_id IS NULL").order(created_at: :asc).last(5)
   end
 
   def subscribe
-
+    # Needed for subscribing to the WebSocket Channel
   end
 
 
-  def self.get_chat_image_url(user)
+  def self.get_chat_image_path(user)
+    # Get the path of a user image or the default one if the user does not hava an image
     if user.image.present?
       user.image.url
     else

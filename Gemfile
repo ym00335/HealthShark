@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '2.5.1'
 gem 'actionpack-page_caching'
 gem 'actionpack-action_caching'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -15,7 +15,7 @@ gem 'modernizr-rails'
 
 gem 'carrierwave'
 
-gem 'puma', '~> 3.11'
+gem 'puma', '3.12.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
