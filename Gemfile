@@ -27,15 +27,13 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'devise', '4.7.1'
-
+gem 'simple_calendar'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '>= 4.3.1'
 gem 'jquery-rails'
-gem 'therubyracer'
 gem 'rails-erd', group: :development
 group :development, :test do
   gem 'railroady'
