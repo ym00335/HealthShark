@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_170150) do
+ActiveRecord::Schema.define(version: 2020_03_13_184730) do
 
   create_table "discussions", force: :cascade do |t|
     t.text "topic", null: false
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2020_03_13_170150) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
   end
 
   create_table "messages", force: :cascade do |t|

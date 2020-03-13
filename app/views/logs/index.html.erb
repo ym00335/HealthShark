@@ -2,26 +2,20 @@
 
 <%= month_calendar events: @logs do |date, logs| %>
   <%= date %>
-  <% @logs.each do |log| %>
 
-      <p>
-        <strong>Meal</strong>
-          <%= log.meal %>
-      </p>
-      <p>
-        <strong>Calories Consumed:</strong>
-          <%= log.calories %>
-      </p>
-      <p>
-        <strong>Meal Rating</strong>
-          <%= log.meal_rating %>
-      </p>
-      <p><%= link_to 'Show', log %></p>
-      <p><%= link_to 'Edit', edit_log_path(log) %></p>
-      <p><%= link_to 'Destroy', log, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  <% logs.each do |log| %>
+    <a class="book-links" href="/logs/<%=log.id %>">
+    <div>
+      <%=log.meal%>
 
+    </div>
+
+    <div>
+      <%=log.calories %>
+    </div>
+    </a>
   <% end %>
-
-<%= link_to 'New Log', new_log_path %>
-
 <% end %>
+
+
+<%= link_to 'New Log', new_log_path, class: "btn-custom" %>

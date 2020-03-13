@@ -12,6 +12,16 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :start_time %>
+    <%= form.datetime_select :start_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_time %>
+    <%= form.datetime_select :end_time %>
+  </div>
+
+  <div class="field">
     <%= form.label :meal %>
     <%= form.text_field :meal %>
   </div>
@@ -22,8 +32,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :meal_rating %>
-    <%= form.number_field :meal_rating %>
+    <%= form.label :rating %>
+    <%= form.number_field :rating %>
   </div>
 
   <div class="actions">

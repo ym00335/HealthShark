@@ -15,8 +15,11 @@ class LogsTest < ApplicationSystemTestCase
     click_on "New Log"
 
     fill_in "Calories", with: @log.calories
+    fill_in "End time", with: @log.end_time
     fill_in "Meal", with: @log.meal
-    fill_in "Meal rating", with: @log.meal_rating
+    fill_in "Meal name", with: @log.meal_name
+    fill_in "Rating", with: @log.rating
+    fill_in "Start time", with: @log.start_time
     click_on "Create Log"
 
     assert_text "Log was successfully created"
@@ -28,8 +31,11 @@ class LogsTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Calories", with: @log.calories
+    fill_in "End time", with: @log.end_time
     fill_in "Meal", with: @log.meal
-    fill_in "Meal rating", with: @log.meal_rating
+    fill_in "Meal name", with: @log.meal_name
+    fill_in "Rating", with: @log.rating
+    fill_in "Start time", with: @log.start_time
     click_on "Update Log"
 
     assert_text "Log was successfully updated"

@@ -1,10 +1,10 @@
 class LogsController < ApplicationController
   before_action :set_log, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+
   # GET /logs
   # GET /logs.json
   def index
-    @logs = current_user.logs.order("created_at DESC")
+    @logs = Log.all
   end
 
   # GET /logs/1
@@ -14,7 +14,7 @@ class LogsController < ApplicationController
 
   # GET /logs/new
   def new
-    @log = Log.new
+    @log = current_user.logs.build
   end
 
   # GET /logs/1/edit
@@ -26,7 +26,6 @@ class LogsController < ApplicationController
   def create
     @log = Log.new(log_params)
     @log.user_id = current_user.id
-
     respond_to do |format|
       if @log.save
         format.html { redirect_to @log, notice: 'Log was successfully created.' }
@@ -70,6 +69,6 @@ class LogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def log_params
-      params.require(:log).permit(:meal, :calories, :meal_rating)
+      params.require(:log).permit(:start_time, :end_time, :meal, :calories)
     end
 end
