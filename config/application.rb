@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module HealthShark
   class Application < Rails::Application
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
     config.secret_key_base = 'my_secret_key_base'
