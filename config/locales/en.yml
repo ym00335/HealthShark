@@ -19,6 +19,7 @@ en:
     register_nav_link: Register
     global_chat_nav_link: "Global Chat"
     discussions_nav_link: "Discussions"
+    logs_nav_link: Calendar
 
   footer:
     title: HealthShark

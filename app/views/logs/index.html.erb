@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<%= month_calendar events: @logs do |date, logs| %>
+  <%= date %>
+
+  <% logs.each do |log| %>
+    <a class="links" href="/logs/<%=log.id %>">
+    <div>
+      <%=log.meal%>
+    </div>
+    </a>
+  <% end %>
+<% end %>
+
+
+<%= link_to 'New Log', new_log_path, class: "btn-custom" %>

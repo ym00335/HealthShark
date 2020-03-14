@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :logs
   mount ActionCable.server => '/chatcable'
 
   # Devise sign out to destroy the current session

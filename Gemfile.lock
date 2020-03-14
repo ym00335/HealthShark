@@ -78,6 +78,7 @@ GEM
       image_processing (~> 1.1)
       mimemagic (>= 0.3.0)
       mini_mime (>= 0.1.3)
+    choice (0.2.0)
     chromedriver-helper (1.2.0)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
@@ -91,6 +92,7 @@ GEM
       warden (~> 1.2.3)
     erubi (1.9.0)
     execjs (2.7.0)
+    ffi (1.12.2)
     ffi (1.12.2-x64-mingw32)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -120,8 +122,11 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.14.0)
     modernizr-rails (2.7.1)
+    msgpack (1.3.3)
     msgpack (1.3.3-x64-mingw32)
     nio4r (2.5.2)
+    nokogiri (1.10.9)
+      mini_portile2 (~> 2.4.0)
     nokogiri (1.10.9-x64-mingw32)
       mini_portile2 (~> 2.4.0)
     normalize-rails (4.1.1)
@@ -129,7 +134,8 @@ GEM
     pg (1.2.2-x64-mingw32)
     popper_js (1.16.0)
     public_suffix (4.0.3)
-    puma (3.12.3)
+    puma (4.3.3)
+      nio4r (~> 2.0)
     rack (2.2.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -154,6 +160,11 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
+    rails-erd (1.6.0)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.3.0)
       loofah (~> 2.3)
     railties (5.2.4.1)
@@ -170,6 +181,9 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rexml (3.2.4)
+    ruby-graphviz (1.2.5)
+      rexml
     ruby-vips (2.0.17)
       ffi (~> 1.9)
     sass (3.7.4)
@@ -183,6 +197,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sassc (2.2.1)
+      ffi (~> 1.9)
     sassc (2.2.1-x64-mingw32)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -191,6 +207,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    simple_calendar (2.3.0)
+      rails (>= 3.0)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -225,6 +243,7 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
@@ -241,12 +260,15 @@ DEPENDENCIES
   jquery-rails
   modernizr-rails
   normalize-rails
+  puma
   pg (~> 1.2.2)
   puma (= 3.12.3)
   railroady
   rails (~> 5.2.4)
   rails-controller-testing
+  rails-erd
   sass-rails (~> 5.0)
+  simple_calendar
   sqlite3
   turbolinks (~> 5)
   tzinfo-data

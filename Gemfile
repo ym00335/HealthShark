@@ -15,7 +15,7 @@ gem 'modernizr-rails'
 
 gem 'carrierwave'
 
-gem 'puma', '3.12.3'
+gem 'puma'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -28,8 +28,6 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise', '4.7.1'
 
-gem 'pg', '~> 1.2.2'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -37,6 +35,7 @@ gem 'pg', '~> 1.2.2'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '>= 4.3.1'
 gem 'jquery-rails'
+gem 'rails-erd', group: :development
 group :development, :test do
   gem 'railroady'
 end

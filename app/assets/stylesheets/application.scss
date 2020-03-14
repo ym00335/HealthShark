@@ -11,15 +11,21 @@
  * It is generally better to create a new file per style scope.
  *= require_tree .
  *= require_self
+ *=
  */
 
 @import "bootstrap";
+@import "bootstrap";
 @import "normalize-rails";
+@import "simple_calendar";
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Serif&display=swap');
 
 $dark_blue: #1A535C;
 $light_blue: #B3C4C7;
 $medium_blue: #3B6C73;
 $dark_gold: #99861D;
+$weird_black: #333;
+$font: 'IBM Plex Serif', serif;
 
 body {
   background-color: whitesmoke;
@@ -356,3 +362,173 @@ p {
   0% { -webkit-transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); }
 }
+
+
+
+.btn-custom {
+  color: $weird_black;
+  background-color: #fff;
+  border: 1px solid #222;
+  padding: 0.5px 5px;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  font-family: $font, sans-serif;
+  &:hover {
+    text-decoration: none;
+    background-color: $weird_black;
+    color: #fff;
+    transition: 0.5s;
+  }
+}
+
+.links {
+  color: $dark_blue;
+  &:hover {
+    transition: 0.7s;
+    background-color: white;
+    color: white;
+  }
+}
+
+@mixin background-tile {
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px 6px #ccc;
+  padding: 1.5em 1.25em;
+}
+
+.simple-calendar {
+
+  .calendar-heading {
+    padding: 70px 25px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .calendar-title {
+    margin-bottom: 10px;
+    left: auto;
+    font-family: $font, Sans-Serif;
+    font-size: 100px;
+  }
+
+  .table-border {
+    outline: $weird_black;
+    border: 1px solid black;
+  }
+
+  .btn-custom1 {
+    color: $weird_black;
+    background-color: #fff;
+    border: 1px solid #222;
+    padding: 1px 20px;
+    border-radius: 5px;
+    font-family: $font, sans-serif;
+    &:hover {
+      text-decoration: none;
+      background-color: $weird_black;
+      color: #fff;
+      transition: 0.5s;
+    }
+  }
+
+  .day {
+    list-style-type: none;
+    width: 13.6%;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 15px;
+    color: #ddd;
+
+    &:hover {
+      text-decoration: none;
+      background-color: $weird_black;
+      color: #fff;
+      transition: 0.5s;
+    }
+  }
+
+  .wday-0 {
+    border: $weird_black;
+  }
+
+  .wday-1 {
+  }
+
+  .wday-2 {
+  }
+
+  .wday-3 {
+  }
+
+  .wday-4 {
+  }
+
+  .wday-5 {
+  }
+
+  .wday-6 {
+  }
+
+  .today {
+    background-color: #1abc9c;
+  }
+
+  .past {
+    color: $weird_black;
+    background-color: #fff;
+    border: 1px solid #222;
+    padding: 3px 15px;
+    border-radius: 5px;
+    font-family: $font, sans-serif;
+    &:hover {
+      text-decoration: none;
+      background-color: $weird_black;
+      color: #fff;
+      transition: 0.5s;
+    }
+
+  }
+
+  .future {
+    color: $weird_black;
+    background-color: #fff;
+    border: 1px solid #222;
+    padding: 3px 15px;
+    border-radius: 5px;
+    font-family: $font, sans-serif;
+    &:hover {
+      text-decoration: none;
+      background-color: $weird_black;
+      color: #fff;
+      transition: 0.5s;
+    }
+  }
+
+  .start-date {
+  }
+
+  .prev-month {
+    background-color: #333333;
+  }
+
+  .next-month {
+    background-color: #333333;
+  }
+
+  .current-month {
+    color: $weird_black;
+    border: 1px solid #222;
+    padding: 3px 15px;
+    border-radius: 5px;
+    font-family: $font, sans-serif;
+    &:hover {
+      text-decoration: none;
+      background-color: $weird_black;
+      color: #fff;
+      transition: 0.5s;
+    }
+  }
+}
+
