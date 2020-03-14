@@ -6,8 +6,6 @@ gem 'actionpack-page_caching'
 gem 'actionpack-action_caching'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4'
-# Use mysql as the database for Active Record
-gem 'sqlite3'
 
 gem 'normalize-rails'
 
@@ -17,6 +15,7 @@ gem 'carrierwave'
 
 gem 'puma'
 
+# Use postgreSQL for the db of the app
 gem 'pg', '~> 1.2.2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
