@@ -7,7 +7,7 @@
       <small>
         Creator: <%= (discussion.owner.id == current_user.id) ? 'You' : discussion.owner.name %>
         <br/>
-        Total Messages: <i id="messages-count"><%= discussion.messages.length %></i>
+        Total Messages: <strong id="messages-count"><%= discussion.messages.length %></strong>
       </small>
     </h2>
     <% if discussion.owner.id == current_user.id %>

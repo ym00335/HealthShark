@@ -10,7 +10,7 @@ class DiscussionsController < ApplicationController
   # GET /discussions/1
   # GET /discussions/1.json
   def show
-    @messages = @discussion.messages.where("discussion_id IS ?", @discussion.id).order(created_at: :asc).last(5)
+    @messages = @discussion.messages.where("discussion_id = ?", @discussion.id).order(created_at: :asc).last(5)
     @messages_count = @discussion.messages.count
   end
 

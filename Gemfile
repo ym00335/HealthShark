@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise', '4.7.1'
 
+gem 'pg', '~> 1.2.2'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
