@@ -15,6 +15,8 @@ gem 'carrierwave'
 
 gem 'puma'
 
+gem "simple_calendar", "~> 2.0"
+
 # Use postgreSQL for the db of the app
 gem 'pg', '~> 1.2.2'
 # Use SCSS for stylesheets
