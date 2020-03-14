@@ -4,14 +4,9 @@
   <%= date %>
 
   <% logs.each do |log| %>
-    <a class="book-links" href="/logs/<%=log.id %>">
+    <a class="links" href="/logs/<%=log.id %>">
     <div>
       <%=log.meal%>
-
-    </div>
-
-    <div>
-      <%=log.calories %>
     </div>
     </a>
   <% end %>

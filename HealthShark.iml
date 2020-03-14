@@ -98,7 +98,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rb-inotify (v0.10.1, ruby-2.6.5-p114) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v1.7.0, ruby-2.6.5-p114) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="responders (v3.0.0, ruby-2.6.5-p114) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rexml (v3.1.9, ruby-2.6.5-p114) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rexml (v3.2.4, ruby-2.6.5-p114) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-graphviz (v1.2.5, ruby-2.6.5-p114) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-vips (v2.0.17, ruby-2.6.5-p114) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass (v3.7.4, ruby-2.6.5-p114) [gem]" level="application" />
