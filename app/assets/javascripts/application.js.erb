@@ -11,15 +11,16 @@
 // about supported directives.
 //
 //= require jquery3
+//= require bootstrap
 //= require bootstrap-sprockets
 //= require cookiealert
 //= require jquery_ujs
 //= require_tree .
 
-import { Calendar } from '@fullcalendar/core';
-import bootstrapPlugin from '@fullcalendar/bootstrap';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
+//import { Calendar } from '@fullcalendar/core';
+//import bootstrapPlugin from '@fullcalendar/bootstrap';
+//import dayGridPlugin from '@fullcalendar/daygrid';
+//import timeGridPlugin from '@fullcalendar/timegrid';
 
 let calendar = new Calendar(calendarEl, {
     plugins: [ dayGridPlugin, timeGridPlugin, bootstrapPlugin ],
