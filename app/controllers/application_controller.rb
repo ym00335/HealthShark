@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   # Configure the permitted parameters for the devise before each action
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :ensure_domain
+  #before_action :ensure_domain
 
   APP_DOMAIN = 'www.health-shark.co.uk'
 
