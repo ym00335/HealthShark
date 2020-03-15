@@ -2,7 +2,6 @@ class GlobalChatController < ApplicationController
   before_action :authenticate_user!
   include ActionController::Live
 
-  caches_action :index, expires_in: 1.minute
 
   def index
     # The count of all global chat messages

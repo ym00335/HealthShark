@@ -15,6 +15,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Clears all cache on the front-end
+  def set_cache_buster
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+  end
+
   # Display the home index with not found status and flash an alert.
   def not_found
     raise ActionController::RoutingError.new('Not Found')
