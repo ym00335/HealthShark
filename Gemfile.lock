@@ -205,8 +205,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    serviceworker-rails (0.6.0)
-      railties (>= 3.1)
     simple_calendar (2.3.0)
       rails (>= 3.0)
     sprockets (3.7.2)
@@ -265,7 +263,6 @@ DEPENDENCIES
   rails-erd
   redis (~> 3.0)
   sass-rails (~> 5.0)
-  serviceworker-rails
   simple_calendar (~> 2.0)
   turbolinks (~> 5)
   tzinfo-data
