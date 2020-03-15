@@ -31,6 +31,8 @@ gem 'devise', '4.7.1'
 
 gem 'redis', '~> 3.0'
 
+gem 'serviceworker-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
