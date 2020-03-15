@@ -1,17 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  start_time: 2020-03-13 19:15:52
-  end_time: 2020-03-13 19:15:52
   meal: MyString
-  meal_name: MyString
   calories: 1
-  rating: 1
+  start_date: 2020-03-14 23:58:26
+  end_date: 2020-03-14 23:58:26
 
 two:
-  start_time: 2020-03-13 19:15:52
-  end_time: 2020-03-13 19:15:52
   meal: MyString
-  meal_name: MyString
   calories: 1
-  rating: 1
+  start_date: 2020-03-14 23:58:26
+  end_date: 2020-03-14 23:58:26

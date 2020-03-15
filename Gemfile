@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '2.6.5'
 gem 'actionpack-page_caching'
 gem 'actionpack-action_caching'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -10,7 +10,7 @@ gem 'rails', '~> 5.2.4'
 gem 'normalize-rails'
 
 gem 'modernizr-rails'
-
+gem 'sqlite3'
 gem 'carrierwave'
 
 gem 'puma'

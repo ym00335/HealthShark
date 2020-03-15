@@ -16,6 +16,18 @@
 //= require jquery_ujs
 //= require_tree .
 
+import { Calendar } from '@fullcalendar/core';
+import bootstrapPlugin from '@fullcalendar/bootstrap';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+
+let calendar = new Calendar(calendarEl, {
+    plugins: [ dayGridPlugin, timeGridPlugin, bootstrapPlugin ],
+    themeSystem: 'bootstrap'
+});
+
+calendar.render();
+
 $(document).ready(function () {
     //Show cookie notice.
     showCookieNotice();
