@@ -60,7 +60,7 @@ en:
       telephone_validation_feedback: '- enter a correct phone number or do not enter any!'
 
   controllers:
-    not_found: There is no such item.
+    not_found: There is no such path.
     contacts:
       send_success: Your mail was sent successfully.
       send_fail: Message was not sent!

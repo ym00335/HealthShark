@@ -11,14 +11,13 @@ class ApplicationController < ActionController::Base
   def ensure_domain
     if Rails.env.production? && request.env['HTTP_HOST'] != APP_DOMAIN
       # HTTP 301 is a "permanent" redirect
-      redirect_to "http://#{APP_DOMAIN}", :status => 301
+      redirect_to "https://#{APP_DOMAIN}", :status => 301
     end
   end
 
   # Display the home index with not found status and flash an alert.
   def not_found
-    flash[:alert] = I18n.t('controllers.not_found')
-    redirect_to root_path, :status => :not_found and return
+    raise ActionController::RoutingError.new('Not Found')
   end
 
   protected

@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-
-  resources :logs
   mount ActionCable.server => '/chatcable'
 
   # Devise sign out to destroy the current session
@@ -14,7 +12,7 @@ Rails.application.routes.draw do
   root :to => redirect('home/index')
 
   authenticate do
-    resources :discussions
+    resources :discussions, :logs
 
     # Specify the custom routes
     get 'global_chat/index'
@@ -24,5 +22,9 @@ Rails.application.routes.draw do
 
     get 'contacts/index'
     post 'mail/send', to: 'contacts#send_mail'
+  end
+
+  %w( 404 422 500 503 ).each do |code|
+    get code, :to => "errors#show", :code => code
   end
 end
