@@ -13,6 +13,10 @@ module HealthShark
     config.load_defaults 5.2
     config.secret_key_base = 'my_secret_key_base'
 
+    ENV["REDISTOGO_URL"] = 'redis://username:password@my.host:6389'
+
+    config.gem 'redis'
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
