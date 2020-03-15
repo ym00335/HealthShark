@@ -4,6 +4,16 @@ class ApplicationController < ActionController::Base
 
   # Configure the permitted parameters for the devise before each action
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :ensure_domain
+
+  APP_DOMAIN = 'www.health-shark.co.uk'
+
+  def ensure_domain
+    if Rails.env.production? && request.env['HTTP_HOST'] != APP_DOMAIN
+      # HTTP 301 is a "permanent" redirect
+      redirect_to "http://#{APP_DOMAIN}", :status => 301
+    end
+  end
 
   # Display the home index with not found status and flash an alert.
   def not_found
