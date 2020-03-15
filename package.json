@@ -1,5 +1,32 @@
 {
-  "name": "HealthShark",
+  "name": "healthshark",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@fullcalendar/bootstrap": "latest",
+    "@fullcalendar/core": "latest",
+    "@fullcalendar/daygrid": "latest",
+    "@fullcalendar/timegrid": "latest",
+    "tui-code-snippet": "^2.3.1"
+  },
+  "description": "This README would normally document whatever steps are necessary to get the\r application up and running.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc",
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/milenDG/HealthShark.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/milenDG/HealthShark/issues"
+  },
+  "homepage": "https://github.com/milenDG/HealthShark#readme"
 }

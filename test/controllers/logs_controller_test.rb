@@ -17,7 +17,7 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create log" do
     assert_difference('Log.count') do
-      post logs_url, params: { log: { calories: @log.calories, end_time: @log.end_time, meal: @log.meal, meal_name: @log.meal_name, rating: @log.rating, start_time: @log.start_time } }
+      post logs_url, params: { log: { calories: @log.calories, end_date: @log.end_date, meal: @log.meal, start_date: @log.start_date } }
     end
 
     assert_redirected_to log_url(Log.last)
@@ -34,7 +34,7 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update log" do
-    patch log_url(@log), params: { log: { calories: @log.calories, end_time: @log.end_time, meal: @log.meal, meal_name: @log.meal_name, rating: @log.rating, start_time: @log.start_time } }
+    patch log_url(@log), params: { log: { calories: @log.calories, end_date: @log.end_date, meal: @log.meal, start_date: @log.start_date } }
     assert_redirected_to log_url(@log)
   end
 

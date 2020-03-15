@@ -14,7 +14,7 @@ class LogsController < ApplicationController
 
   # GET /logs/new
   def new
-    @log = current_user.logs.build
+    @log = Log.new
   end
 
   # GET /logs/1/edit
@@ -26,6 +26,8 @@ class LogsController < ApplicationController
   def create
     @log = Log.new(log_params)
     @log.user_id = current_user.id
+    @log.save
+
     respond_to do |format|
       if @log.save
         format.html { redirect_to @log, notice: 'Log was successfully created.' }
@@ -69,6 +71,6 @@ class LogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def log_params
-      params.require(:log).permit(:start_time, :end_time, :meal, :calories)
+      params.require(:log).permit(:meal, :calories, :start_date, :end_date)
     end
 end
