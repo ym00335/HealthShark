@@ -3,6 +3,11 @@
  * the Message input field
  */
 $(document).ready(function()  {
+    // If it is not for the global_chat -> return
+    if (location.pathname.split('/')[1] !== 'global_chat') {
+        return;
+    }
+
     let $message = $('#message');
     let $sendMesssageBtn = $('#send-button');
     // Add onclick listener  for the button to send the message

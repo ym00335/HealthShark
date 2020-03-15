@@ -3,6 +3,11 @@
  * the Message input field
  */
 $(document).ready(function()  {
+    // If it is not for the discussions -> return
+    if (location.pathname.split('/')[1] !== 'discussions') {
+        return;
+    }
+
     let $message = $('#message');
     let $sendMesssageBtn = $('#send-button');
 
