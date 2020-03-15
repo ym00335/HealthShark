@@ -11,6 +11,7 @@ class CreateDiscussions < ActiveRecord::Migration[5.2]
 
     add_foreign_key :discussions, :user, column: :owner_id, primary_key: :id
 
-    add_foreign_key :messages, :discussions, column: :discussion_id, primary_key: :id
+    add_reference :messages, :discussion
+    add_foreign_key :messages, :discussions
   end
 end

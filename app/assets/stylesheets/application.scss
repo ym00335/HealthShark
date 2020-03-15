@@ -17,7 +17,6 @@
 @import "bootstrap";
 @import "normalize-rails";
 @import "simple_calendar";
-
 //@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Serif&display=swap');
 
 $dark_blue: #1A535C;
@@ -404,7 +403,6 @@ p {
     padding: 70px 25px;
     width: 100%;
     text-align: center;
-    display: inline-block;
   }
 
   .calendar-title {
@@ -412,15 +410,11 @@ p {
     left: auto;
     font-family: $font, Sans-Serif;
     font-size: 100px;
-
   }
 
   .table-border {
     outline: $weird_black;
     border: 1px solid black;
-    padding: 3px 15px;
-    border-radius: 5px;
-
   }
 
   .btn-custom1 {
@@ -441,9 +435,6 @@ p {
   .day {
     list-style-type: none;
     width: 13.6%;
-    border: 1px solid #222;
-    padding: 3px 15px;
-    border-radius: 5px;
     text-align: center;
     margin-bottom: 5px;
     font-size: 15px;

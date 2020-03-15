@@ -10,6 +10,7 @@ gem 'rails', '~> 5.2.4'
 gem 'normalize-rails'
 
 gem 'modernizr-rails'
+
 gem 'carrierwave'
 
 gem 'puma'

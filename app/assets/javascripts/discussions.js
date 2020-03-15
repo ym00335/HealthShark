@@ -10,13 +10,11 @@ $(document).ready(function()  {
     $sendMesssageBtn.click(sendMessage);
 
     // Add on enter binding to send the message
-    if ($message[0]) {
-        $message[0].addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-    }
+    $message[0].addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
 
     /**
      * Send a message through the websocket for the specific discussion

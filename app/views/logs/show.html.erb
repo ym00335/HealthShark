@@ -1,6 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Start time:</strong>
+  <%= @log.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @log.end_time %>
+</p>
+
+<p>
   <strong>Meal:</strong>
   <%= @log.meal %>
 </p>
@@ -10,15 +20,7 @@
   <%= @log.calories %>
 </p>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @log.start_date %>
-</p>
-
-<p>
-  <strong>End date:</strong>
-  <%= @log.end_date %>
-</p>
 
 <%= link_to 'Edit', edit_log_path(@log), class: "btn-custom" %> |
 <%= link_to 'Back', logs_path, class: "btn-custom" %>
+<%= link_to 'Delete', log_path, method: :delete, data: {confirm: "Are you sure you want to delete this log?"}, class: "btn-custom" %>
