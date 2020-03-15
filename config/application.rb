@@ -16,6 +16,8 @@ module HealthShark
     # Use the custom exception paths
     config.exceptions_app = self.routes
 
+    config.assets.precompile = ['.js', '.css', '*.css.erb']
+
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
