@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'home/index'
 
   # Redirect the root to the index of the home controller
-  root :to => redirect('home/index')
+  root :to => "home#index"
 
   authenticate do
     resources :discussions, :logs
