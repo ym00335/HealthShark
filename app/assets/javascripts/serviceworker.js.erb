@@ -7,6 +7,7 @@ function onInstall(event) {
         caches.open(CACHE_NAME).then(function prefill(cache) {
             return cache.addAll([
                 '<%= asset_path "application.css" %>',
+                '/',
                 '/home/index',
                 '/global_chat/index',
                 '/discussions',
