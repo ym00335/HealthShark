@@ -32,12 +32,20 @@ $(document).ready(function () {
         });
     }, 2000);
 
-    //Set current navigation link on header
-    let controller = location.pathname.split('/')[1];
-    if (controller === 'discussions' || controller === 'global_chat') {
-        controller = 'chat';
-    }
-    $(`ul li[controller=${controller}] a`)[0].classList.add('active')
+    (function showCurrentActiveNavLink() {
+        //Set current navigation link on header
+        let controller = location.pathname.split('/')[1];
+
+        // Check whether it is the root path and if so -> show 'home' as currently active
+        if (!controller) {
+            controller = 'home';
+        }
+
+        if (controller === 'discussions' || controller === 'global_chat') {
+            controller = 'chat';
+        }
+        $(`ul li[controller=${controller}] a`)[0].classList.add('active')
+    }) ();
 });
 
 // Validates notebook, note and quick_note in the Front-end
