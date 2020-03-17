@@ -12,8 +12,8 @@ default: &default
   password: c0m2o27
 
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  <<: *default
+  database: healthshark_development
 
 
 # Warning: The database defined as "test" will be erased and
