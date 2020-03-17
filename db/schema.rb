@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_184730) do
+ActiveRecord::Schema.define(version: 2020_03_17_232206) do
 
   create_table "discussions", force: :cascade do |t|
     t.text "topic", null: false
@@ -21,15 +21,13 @@ ActiveRecord::Schema.define(version: 2020_03_13_184730) do
     t.index ["owner_id"], name: "index_discussions_on_owner_id"
   end
 
-  create_table "logs", force: :cascade do |t|
-    t.string "meal"
-    t.integer "calories"
-    t.integer "meal_rating"
+  create_table "events", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.datetime "start_time"
-    t.datetime "end_time"
   end
 
   create_table "messages", force: :cascade do |t|

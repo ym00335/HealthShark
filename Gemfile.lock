@@ -207,8 +207,6 @@ GEM
       tilt
     serviceworker-rails (0.6.0)
       railties (>= 3.1)
-    simple_calendar (2.3.0)
-      rails (>= 3.0)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -216,6 +214,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sqlite3 (1.4.2)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -266,14 +265,14 @@ DEPENDENCIES
   redis (~> 3.0)
   sass-rails (~> 5.0)
   serviceworker-rails
-  simple_calendar (~> 2.0)
+  sqlite3
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
 
 RUBY VERSION
-   ruby 2.5.1p57
+   ruby 2.6.5p114
 
 BUNDLED WITH
    1.17.3
