@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'calendar/index'
+  get "calendar/data", :to=>"event#get", :as=>"data"
+  post "calendar/data(/:id)", :to => "event#add"
+  put "calendar/data/:id", :to => "event#update"
+  delete "calendar/data/:id", :to => "event#delete"
   mount ActionCable.server => '/chatcable'
 
   # Devise sign out to destroy the current session

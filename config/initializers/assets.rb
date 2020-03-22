@@ -13,3 +13,5 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.configuration.assets.precompile += %w[serviceworker.js manifest.json]
+Rails.application.config.assets.precompile += %w( dhtmlxscheduler_material.css )
+Rails.application.config.assets.precompile += %w( dhtmlxscheduler.js )

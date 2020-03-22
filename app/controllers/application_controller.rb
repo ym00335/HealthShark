@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   # Set the default protection
-  protect_from_forgery with: :exception
-
+  protect_from_forgery with: :null_session
   # Configure the permitted parameters for the devise before each action
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :ensure_domain
