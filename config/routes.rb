@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   root :to => "home#index"
 
   authenticate do
-    resources :discussions, :logs
+    resources :discussions
 
     # Specify the custom routes
     get 'global_chat/index'

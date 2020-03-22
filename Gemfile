@@ -13,7 +13,6 @@ gem 'modernizr-rails'
 gem 'carrierwave'
 
 gem 'puma'
-gem 'sqlite3'
 gem 'serviceworker-rails'
 
 # Use postgreSQL for the db of the app
