@@ -1,0 +1,70 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap";
+@import "normalize-rails";
+
+$pastel_blue: #A6D9CC;
+$light_blue: #CDECE4;
+$medium_blue: #73B0A0;
+$dark_gold: #FCF070;
+
+body {
+  background-color: whitesmoke;
+}
+
+#header {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: $pastel_blue !important
+}
+
+#main-content {
+  margin-top: 25px;
+  margin-bottom: 50px;
+  background-color: $light_blue;
+  box-shadow: 0 10px 25px $light_blue;
+  font-size: 15pt
+}
+
+#footer {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: $pastel_blue !important;
+  color: #FFFFFF;
+}
+
+.project-link {
+  padding-top: 20px;
+  margin-top: -20px;
+}
+
+.data-img {
+  margin-top: 10px;
+  margin-left: 0;
+  margin-bottom: 10px;
+  max-width: 100% !important;
+}
+
+.footer-text-link {
+  color: $dark_gold;
+  &:hover {
+    color: lightseagreen;
+  }
+}
+
+.link-button {
+  background-color: inherit;
+  color: $dark_gold;
+  border: 2px solid $dark_gold;
+  text-align: center;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  &:hover {
+    background-color: $dark_gold;
+    color: lightgray;
+  }
+}
