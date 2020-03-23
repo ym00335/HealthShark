@@ -1,3 +1,25 @@
 // Place all the styles related to the Chat controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap";
+@import "normalize-rails";
+
+.rounded-div {
+  padding: 5px 15px 5px 15px !important;
+  margin-bottom: 5px;
+  display: inline-block;
+  border-radius: 6px;
+}
+
+.message-received {
+  background-color: #056193 !important;
+  color: white !important;
+  @extend .rounded-div;
+}
+
+.message-sent {
+  background-color: #A6D9CC;
+  color: white !important;
+  @extend .rounded-div;
+}
