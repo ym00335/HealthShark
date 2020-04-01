@@ -66,6 +66,7 @@ body {
 }
 
 @media (min-width: 992px) {
+
   #main-content {
     margin-top: 90px;
   }
@@ -134,7 +135,7 @@ img.svg {
 }
 
 .secondary-text {
-  color: $dark_gold !important;
+  color: #FCF070 !important;
 }
 
 a > .svg {
@@ -244,8 +245,8 @@ p {
 }
 
 .navbar-brand {
-  color: white;
-  font-family: Consolas, serif;
+  color: #505050;
+  font-family: Jazz LET, serif;
   font-size: 22px;
   &:hover {
     color: lightgoldenrodyellow !important;
@@ -262,7 +263,7 @@ p {
     opacity: 0.7;
     transition: 0.7s;
   }
-  
+
 }
 
 .cookiealert {
@@ -295,11 +296,11 @@ p {
 }
 
 .btn-primary{
-  background-color: $dark_blue;
-  border-color: $medium_blue;
+  background-color: #47525E;
+  border-color: $pastel_blue;
   &:hover{
-    background-color: $medium_blue;
-    border-color: $dark_blue;
+    background-color: $btn_grey;
+    border-color: $medium_blue;
   }
 }
 
@@ -319,8 +320,8 @@ p {
 .btn-light {
   &.active{
     color: lightgray !important;
-    background-color: $medium_blue !important;
-    border-color: $medium_blue !important;
+    background-color: $btn_grey !important;
+    border-color: $btn_grey !important;
   }
 }
 
