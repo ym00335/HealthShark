@@ -1,0 +1,34 @@
+/**
+ * Add on click listeners for the Send Message button and on enter click for
+ * the Message input field
+ */
+$(document).ready(function()  {
+    // If it is not for the global_chat -> return
+    if (!(location.pathname.split('/').length === 2 && location.pathname.split('/')[1] === 'global_chat')) {
+        return;
+    }
+
+    let $message = $('#message');
+    let $sendMesssageBtn = $('#send-button');
+    // Add onclick listener  for the button to send the message
+    $sendMesssageBtn.click(sendMessage);
+
+    // Add on enter binding
+    $message[0].addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    /**
+     * Send a message through the websocket
+     */
+    function sendMessage(){
+        if ($message.val()) {
+            App.socket.global_chat($message.val());
+            $message.val("");
+        }
+    }
+});
+
+

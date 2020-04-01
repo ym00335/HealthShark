@@ -11,31 +11,45 @@
  * It is generally better to create a new file per style scope.
  *= require_tree .
  *= require_self
+ *=
  */
 
 @import "bootstrap";
 @import "normalize-rails";
 
-$dark_blue: #1A535C;
-$light_blue: #B3C4C7;
-$medium_blue: #3B6C73;
-$dark_gold: #99861D;
+$dark_blue: #A6D9CC;
+$light_blue: #CDECE4;
+$medium_blue: #73B0A0;
+$dark_gold: #FCF070;
+$weird_black: #383737;
+$font: 'IBM Plex Serif', serif;
 
 body {
-  background-color: whitesmoke;
+  background-image: url('homebg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: white;
+  .container {
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  }
+  .container::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+  }
 }
 
 #header {
-  padding-top: 8px;
-  padding-bottom: 8px;
+  font-size: 30px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   background-color: $dark_blue !important
 }
-
+// home and below
 #main-content {
   margin-top: 25px;
   margin-bottom: 50px;
-  background-color: $light_blue;
-  box-shadow: 0 10px 25px $light_blue;
   font-size: 15pt
 }
 
@@ -57,6 +71,7 @@ body {
   }
 
   #header {
+    font-size: 25px;
     position: fixed;
     top: 0;
     right: 0;
@@ -88,12 +103,13 @@ body {
 #footer {
   padding-top: 8px;
   padding-bottom: 8px;
-  background-color: $medium_blue !important;
-  color: #B7C8CA
+  position: absolute;
+  width: 100%;
+  background-color: $dark_blue !important;
+  color: white
 }
 
 #text-content-holder {
-  background-color: #94AEB1;
   color: #154047;
   padding-top: 15px;
   padding-bottom: 20px;
@@ -141,17 +157,6 @@ h1 {
   border-radius: 6px;
 }
 
-.message-received {
-  background-color: $dark_blue !important;
-  color: white !important;
-  @extend .rounded-div;
-}
-
-.message-sent {
-  background-color: white;
-  @extend .rounded-div;
-}
-
 .rounded-img{
   border-radius: 15px;
 }
@@ -162,27 +167,24 @@ h1 {
   }
 }
 
-#address-div {
-  background-color: #94aeb1;
-  color: #154047;
-  margin: auto;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
 
-#address-heading {
-  background-color: $light_blue;
-  padding: 10px;
-  margin-top: 5px;
-}
 
 p {
   text-align: justify
 }
 
 .left-rounded-img {
-  border-bottom-left-radius: 15px;
   border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 0;
+}
+
+@media (min-width: 768px) {
+  .left-rounded-img {
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 0;
+  }
 }
 
 .bottom-rounded-img {
@@ -201,7 +203,7 @@ p {
 }
 
 .footer-text-link {
-  color: #c2a60d;
+  color: $dark_gold;
   &:hover {
     color: lightseagreen;
   }
@@ -226,7 +228,7 @@ p {
   color: lightblue;
   font-style: italic;
   &:hover {
-    color: lightgray !important;
+    color: white !important;
   }
 
   &.active {
@@ -248,6 +250,19 @@ p {
   &:hover {
     color: lightgoldenrodyellow !important;
   }
+}
+
+.navbar-icon{
+  width: 20px;
+  height: 20px;
+  opacity: 1;
+  transition: 0.7s;
+  text-decoration: none;
+  &:hover{
+    opacity: 0.7;
+    transition: 0.7s;
+  }
+  
 }
 
 .cookiealert {
@@ -288,6 +303,19 @@ p {
   }
 }
 
+.btn-homepage {
+  background-color: $weird_black;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
 .btn-light {
   &.active{
     color: lightgray !important;
@@ -296,27 +324,202 @@ p {
   }
 }
 
-.note{
-  background-image: image-url("svg/sticky-note.svg") !important;
-  background-size: 100% 100%;
-  padding: 8% 10% 25% 8% !important;
-  height: 90%;
+
+
+.dark-blue-svg {
+  fill: $dark_blue;
 }
 
-.note-holder{
-  margin-bottom: 40px;
-  margin: 0 auto;
+.pointer {
+  cursor: pointer;
 }
 
-.note-text{
-  min-height: 150px;
-  padding-left: 5px;
-  padding-right: 5px;
-  background: repeating-linear-gradient(
-                  to bottom,
-                  lightgoldenrodyellow,
-                  lightgoldenrodyellow 29px,
-                  #d3bf6d 1px,
-                  #d3bf6d 30px
-  );
+#loader {
+  border: 5px solid #f3f3f3; /* Light grey */
+  border-top: 5px solid $dark_blue;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  -webkit-animation: spin 1s linear infinite; /* Safari */
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+
+
+.btn-custom {
+  color: $weird_black;
+  background-color: #fff;
+  border: 1px solid #222;
+  padding: 0.5px 5px;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  font-family: $font, sans-serif;
+  &:hover {
+    text-decoration: none;
+    background-color: $weird_black;
+    color: #fff;
+    transition: 0.5s;
+  }
+}
+
+.links {
+  color: $dark_blue;
+  &:hover {
+    transition: 0.7s;
+    background-color: white;
+    color: white;
+  }
+}
+
+@mixin background-tile {
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px 6px #ccc;
+  padding: 1.5em 1.25em;
+}
+
+.simple-calendar {
+
+  .calendar-heading {
+    padding: 70px 25px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .calendar-title {
+    margin-bottom: 10px;
+    left: auto;
+    font-family: $font, Sans-Serif;
+    font-size: 100px;
+  }
+
+  .table-border {
+    outline: $weird_black;
+    border: 1px solid black;
+  }
+
+  .btn-custom1 {
+    color: $weird_black;
+    background-color: #fff;
+    border: 1px solid #222;
+    padding: 1px 20px;
+    border-radius: 5px;
+    font-family: $font, sans-serif;
+    &:hover {
+      text-decoration: none;
+      background-color: $weird_black;
+      color: #fff;
+      transition: 0.5s;
+    }
+  }
+
+  .day {
+    list-style-type: none;
+    width: 13.6%;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 15px;
+    color: #ddd;
+
+    &:hover {
+      text-decoration: none;
+      background-color: $weird_black;
+      color: #fff;
+      transition: 0.5s;
+    }
+  }
+
+  .wday-0 {
+    border: $weird_black;
+  }
+
+  .wday-1 {
+  }
+
+  .wday-2 {
+  }
+
+  .wday-3 {
+  }
+
+  .wday-4 {
+  }
+
+  .wday-5 {
+  }
+
+  .wday-6 {
+  }
+
+  .today {
+    background-color: #1abc9c;
+  }
+
+  .past {
+    color: $weird_black;
+    background-color: #fff;
+    border: 1px solid #222;
+    padding: 3px 15px;
+    border-radius: 5px;
+    font-family: $font, sans-serif;
+    &:hover {
+      text-decoration: none;
+      background-color: $weird_black;
+      color: #fff;
+      transition: 0.5s;
+    }
+
+  }
+
+  .future {
+    color: $weird_black;
+    background-color: #fff;
+    border: 1px solid #222;
+    padding: 3px 15px;
+    border-radius: 5px;
+    font-family: $font, sans-serif;
+    &:hover {
+      text-decoration: none;
+      background-color: $weird_black;
+      color: #fff;
+      transition: 0.5s;
+    }
+  }
+
+  .start-date {
+  }
+
+  .prev-month {
+    background-color: #333333;
+  }
+
+  .next-month {
+    background-color: #333333;
+  }
+
+  .current-month {
+    color: $weird_black;
+    border: 1px solid #222;
+    padding: 3px 15px;
+    border-radius: 5px;
+    font-family: $font, sans-serif;
+    &:hover {
+      text-decoration: none;
+      background-color: $weird_black;
+      color: #fff;
+      transition: 0.5s;
+    }
+  }
 }

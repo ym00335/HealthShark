@@ -1,0 +1,24 @@
+<h1>Discussions</h1>
+
+<div class="container">
+  Discussions are the place, where you can ask all of your questions on a specific topic and receive answers from our society of HealthSharks.
+</div>
+
+
+<% if @discussions.count == 0 %>
+  <div class="container">
+    <h3><i>There are currently no open discussions. If you want to start a discussion, simply press the button "Create New Discussion" below</i></h3>
+  </div>
+  <hr/>
+<% end %>
+
+<% @discussions.each do |discussion| %>
+  <%= render 'discussion', discussion: discussion, show_messages: false %>
+<% end %>
+
+<div class="container">
+  <%= link_to 'Create New Discussion', new_discussion_path, :class => 'btn btn-primary', :role => 'button'  %>
+
+  <hr/>
+  Please be respectful to everyone and do not harass our supportive community. If you cannot follow that simple rule, we kindly ask you to leave!
+</div>

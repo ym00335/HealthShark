@@ -1,22 +1,58 @@
 <h1>Edit <%= resource_name.to_s.humanize %></h1>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, autofocus: true, :class => 'form-control' %>
+  <div class="row">
+    <div class="col-lg-5 col-xl-4 figure text-center">
+      <%= if current_user.image.present?
+            image_tag current_user.image_url, class: 'img-thumbnail', size: "200x200"
+          else
+            image_tag 'default-user-img.png', class: 'img-thumbnail', size: "200x200"
+          end %>
+      <figcaption class="figure-caption">
+        Current Profile Picture
+      </figcaption>
+    </div>
+
+    <div class="col-lg-7 col-xl-8">
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, autofocus: true, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :image , 'Change Profile Picture' %>
+        <%= f.file_field :image, class: "form-control-file" %>
+      </div>
+    </div>
+
   </div>
-
+    <div class="row">
+      <div class="col">
   <div class="form-group">
+
     <label>Gender</label>
     <div class="btn-group" data-toggle="buttons">
       <label id="female-radio" class="btn btn-light" value="true">
-        <%= f.radio_button :is_female, true, :class => 'custom-control-input' %>Female</label>
+        <%= f.radio_button :is_female, true, class: 'custom-control-input' %>Female</label>
       <label id="male-radio" class="btn btn-light" value="false">
-        <%= f.radio_button :is_female, false, :class => 'custom-control-input' %>Male</label>
+        <%= f.radio_button :is_female, false, class: 'custom-control-input' %>Male</label>
     </div>
-  </div>
+
+      </div>
+      </div>
+
+      <div class="col">
+          <div class="form-group">
+    <%= f.label :diet %>
+    <%= f.select :diet, options_for_select([['Lose Weight'], ['Gain Weight']]), class: 'form-control'%>
+    </div>
+      </div>
+      </div>
+
+
+
 
   <script>
     $(document).ready(() => {
@@ -24,14 +60,42 @@
     });
   </script>
 
+
+    <div class="row">
+      <div class="col-lg-7 col-xl-2">
+        <div class="form-group">
+          <%= f.label :height %>
+          <%= f.text_field :height, autofocus: true, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-lg-7 col-xl-2">
+        <div class="form-group">
+          <%= f.label :weight %>
+          <%= f.text_field :weight, autofocus: true, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-lg-7 col-xl-8">
+        <div class="form-group">
+          <%= f.label :allergies %>
+
+          <%= f.select :allergies, options_for_select([['Nuts'], ['Lactose']]), class: 'form-control'%>
+    
+        </div>
+      </div>
+    </div>
+
+
+
+
+
   <div class="form-group">
     <%= f.label :date_of_birth %>
-    <%= f.date_select :date_of_birth, {order: [:day, :month, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 15, end_year: Date.today.year - 100}, :class => 'custom-select custom-select-sm' %>
+    <%= f.date_select :date_of_birth, {order: [:day, :month, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 15, end_year: Date.today.year - 100}, class: 'custom-select custom-select-sm' %>
   </div>
 
   <div class="form-group">
     <%= f.label :email %>
-    <%= f.email_field :email, :class => 'form-control' %>
+    <%= f.email_field :email, class: 'form-control' %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -40,22 +104,22 @@
 
   <div class="form-group">
     <%= f.label :current_password, 'Current Password'%> <small><i>(current password to confirm changes)</i></small>
-    <%= f.password_field :current_password, autocomplete: "off", :class => 'form-control' %>
+    <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
   </div>
   <hr/>
   <h3 class="text-center">Change password</h3>
   <div class="form-group">
     <%= f.label :password, 'New Password' %> <small><i>(leave blank if you don't want to change it)</i></small>
-    <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
+    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
   </div>
 
   <div class="form-group">
     <%= f.label :password_confirmation , 'Confirm New Password'%>
-    <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
   </div>
 
   <br/>
-  <%= f.submit "Update", :class => 'btn btn-primary', :role => "button" %>
+  <%= f.submit "Update", class: 'btn btn-primary', role: "button" %>
 <% end %>
 
 <hr/>

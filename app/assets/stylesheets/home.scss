@@ -1,3 +1,25 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap";
+@import "normalize-rails";
+
+$dark_blue: #A6D9CC;
+$light_blue: #CDECE4;
+$medium_blue: #73B0A0;
+
+.home #address-div {
+    background-color: $medium_blue;
+    color: #154047;
+    margin: auto;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    width: 250px
+  }
+  
+.home #address-heading {
+    background-color: $light_blue;
+    padding: 10px;
+    margin-top: 5px;
+  }

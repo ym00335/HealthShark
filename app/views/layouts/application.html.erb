@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJNk50v2KRB8p10YZYosdBTicUQFv6te8"></script>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+    <%= stylesheet_link_tag 'dhtmlxscheduler_material', media:'all', 'data-turbolinks-track'=>true %>
+    <%= javascript_include_tag 'dhtmlxscheduler', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'dhtmlxscheduler_quick_info', 'data-turbo-links' => true %>
+    <%= javascript_include_tag 'dhtmlxscheduler_minical', 'data-turbo-links' => true %>
     <%= action_cable_meta_tag %>
-  </head>
+    <%= favicon_link_tag asset_path('favicon.ico') %>
+  <link rel="manifest" href="<%= asset_path('manifest.json') %>" />
+<meta name="apple-mobile-web-app-capable" content="yes"></head>
 
   <body data-username="<%= unless current_user.nil? then current_user.name end %>">
     <%= render 'layouts/header' %>

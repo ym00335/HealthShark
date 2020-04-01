@@ -1,0 +1,117 @@
+// Place all the styles related to the calendar controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+html, body{
+  margin:0px;
+  padding:0px;
+  height:100%;
+  overflow:hidden;
+}
+
+.add_event_button{
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  background: #ff5722;
+  border-radius: 50px;
+  bottom: 40px;
+  right: 55px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.3);
+  z-index: 5;
+  cursor:pointer;
+}
+.add_event_button:after{
+  background: #000;
+  border-radius: 2px;
+  color: #FFF;
+  content: attr(data-tooltip);
+  margin: 16px 0 0 -137px;
+  opacity: 0;
+  padding: 4px 9px;
+  position: absolute;
+  visibility: visible;
+  font-family: "Roboto";
+  font-size: 14px;
+  visibility: hidden;
+  transition: all .5s ease-in-out;
+}
+.add_event_button:hover{
+  background: #ff774c;
+}
+.add_event_button:hover:after{
+  opacity: 0.55;
+  visibility: visible;
+}
+.add_event_button span:before{
+  content:"";
+  background: #fff;
+  height: 16px;
+  width: 2px;
+  position: absolute;
+  left: 26px;
+  top: 20px;
+}
+.add_event_button span:after{
+  content:"";
+  height: 2px;
+  width: 16px;
+  background: #fff;
+  position: absolute;
+  left: 19px;
+  top: 27px;
+}
+
+@media only screen and (max-width: 1000px){
+  .add_event_button{
+    bottom: 5vw;
+    right: 5vw;
+  }
+}
+
+.dhx_cal_event div.dhx_footer,
+.dhx_cal_event.past_event div.dhx_footer,
+.dhx_cal_event.event_workout div.dhx_footer,
+.dhx_cal_event.event_diet div.dhx_footer{
+  background-color: transparent !important;
+}
+.dhx_cal_event .dhx_body{
+  -webkit-transition: opacity 0.1s;
+  transition: opacity 0.1s;
+  opacity: 0.7;
+}
+.dhx_cal_event .dhx_title{
+  line-height: 12px;
+}
+.dhx_cal_event_line:hover,
+.dhx_cal_event:hover .dhx_body,
+.dhx_cal_event.selected .dhx_body,
+.dhx_cal_event.dhx_cal_select_menu .dhx_body{
+  opacity: 1;
+}
+
+.dhx_cal_event.event_workout div, .dhx_cal_event_line.event_workout{
+  background-color: #FF5722 !important;
+  border-color: #732d16 !important;
+}
+
+.dhx_cal_event.dhx_cal_editor.event_workout{
+  background-color: #FF5722 !important;
+}
+
+.dhx_cal_event_clear.event_workout{
+  color:#FF5722 !important;
+}
+
+.dhx_cal_event.event_diet div,
+.dhx_cal_event_line.event_diet{
+  background-color: #0FC4A7 !important;
+  border-color: #698490 !important;
+}
+
+.dhx_cal_event.dhx_cal_editor.event_diet{
+  background-color: #0FC4A7 !important;
+}
+
+.dhx_cal_event_clear.event_diet{
+  color:#0FC4A7 !important;
+}

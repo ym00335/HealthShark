@@ -5,9 +5,19 @@
 //= require_self
 //= require_tree ./channels
 
-(function() {
-  this.App || (this.App = {});
+/**
+ * Creates the WebSocket objects
+ */
+(function () {
+    this.App || (this.App = {});
 
-  App.cable = ActionCable.createConsumer('/chatcable');//$('meta[name=action-cable-url]').attr('content'));
+    const linkPaths = location.pathname.split('/');
+
+    if (!((linkPaths.length === 2 && linkPaths[1] === 'global_chat') ||
+        (linkPaths.length === 3 && linkPaths[1] === 'discussions' && linkPaths[2].match(/^\d+$/)))) {
+        return;
+    }
+
+    App.cable = ActionCable.createConsumer('/chatcable');
 
 }).call(this);

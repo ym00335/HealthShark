@@ -1,5 +1,5 @@
 en:
-  app_title: HealthBuddy
+  app_title: HealthShark
 
   address:
     title: Address of our team
@@ -14,12 +14,16 @@ en:
     contacts_nav_link: Contacts
     chat_nav_link: Chat
     edit_profile_nav_link: Edit Profile
-    logout_nav_link: Log Out
-    login_nav_link: Log In
+    signout_nav_link: Sign Out
+    signin_nav_link: Sign In
     register_nav_link: Register
+    global_chat_nav_link: "Global Chat"
+    discussions_nav_link: "Discussions"
+    logs_nav_link: Calendar
+    friends_nav_link: Friends
 
   footer:
-    title: HealthBuddy
+    title: HealthShark
     app_description: A place where you can store all your physical activities, receipes, get helpful tips about how to live a healthier lifestyle and everything else you want!
     creators_name: Milen Georgiev, // Add the rest
     creators_description: Software Engineers and Students at University of Surrey.
@@ -43,7 +47,7 @@ en:
 
   home:
     title: Home
-    second_paragraph: HealthBuddy is an application, which provides a variety of features in order for you to become the best version of yourself. Try it and you will be amazed. Everyone deserves to be in the best shape and to be happy!
+    second_paragraph: HealthShark is an application, which provides a variety of features in order for you to become the best version of yourself. Try it and you will be amazed. Everyone deserves to be in the best shape and to be happy!
     third_paragraph: How you can use this application is only up to you. We hope that you will like it and use it in what way suits you.
 
   contacts:
@@ -57,7 +61,7 @@ en:
       telephone_validation_feedback: '- enter a correct phone number or do not enter any!'
 
   controllers:
-    not_found: There is no such item.
+    not_found: There is no such path.
     contacts:
       send_success: Your mail was sent successfully.
       send_fail: Message was not sent!

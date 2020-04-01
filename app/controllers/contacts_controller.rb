@@ -2,7 +2,6 @@ class ContactsController < ApplicationController
   # Authenticate the user before each action.
   before_action :authenticate_user!
 
-
   def index
     # Create a new Mail to fill the forms with.
     @sent_mail = SentMail.new

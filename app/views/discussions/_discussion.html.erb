@@ -1,0 +1,29 @@
+<section class="container mt-2">
+  <div class="container rounded-img mb-3 text-center discussion">
+    <%= link_to image_tag(DiscussionsController.get_discussion_image_path(discussion), class: "rounded-circle mr-2 mt-1 clickable-img", height: "100", width: "100", alt: "discussion image"), discussion %>
+    <h2>
+      <%= link_to discussion.topic, discussion %>
+      <br/>
+      <small>
+        Creator: <%= (discussion.owner.id == current_user.id) ? 'You' : discussion.owner.name %>
+        <br/>
+        Total Messages: <strong id="messages-count"><%= discussion.messages.length %></strong>
+      </small>
+    </h2>
+    <% if discussion.owner.id == current_user.id %>
+      <div class="container mt-3 text-center">
+        <h4 class="font-italic">You are the owner of the discussion and its moderator:</h4>
+        <div class="text-center">
+          <%= link_to 'Edit discussion', edit_discussion_path(discussion), :class => "btn btn-primary mr-4" %>
+          <%= link_to 'Close discussion', discussion, method: :delete, data: { confirm: "Are you sure you want to close and delete discussion: #{discussion.topic}? This action cannot be undone!" }, :class => "btn btn-danger"  %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <% if show_messages == true %>
+    <hr/>
+    <input type="hidden" id="discussion-id" value="<%= discussion.id %>">
+    <%= render "layouts/chat", messages: @messages, messages_count: @messages_count, discussion_id: discussion.id %>
+  <% end %>
+</section>
+<hr/>

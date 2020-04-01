@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
-  channel_prefix: Notes_production
+  url: <%= ENV.fetch("REDIS_URL") { "redis://redistogo:0aabf0e5dadf522d0da3099ba0bfb6c1@porgy.redistogo.com:11644/" } %>
+  channel_prefix: HealthShark_production

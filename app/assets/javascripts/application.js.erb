@@ -1,0 +1,211 @@
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, or any plugin's
+// vendor/assets/javascripts directory can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// compiled file. JavaScript code in this file should be added after the last require_* statement.
+//
+// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
+// about supported directives.
+//
+//= require jquery3
+//= require bootstrap-sprockets
+//= require jquery_ujs
+//= require_tree .
+//= stub serviceworker
+
+$(document).ready(function () {
+    //Show cookie notice.
+    showCookieNotice();
+
+    // Remove alerts after 2 seconds
+    window.setTimeout(function() {
+        $alerts = $(".alert").filter(function (index, element) {
+            return !element.classList.contains('cookiealert');
+        });
+
+        $alerts.fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 2000);
+
+    (function showCurrentActiveNavLink() {
+        //Set current navigation link on header
+        let controller = location.pathname.split('/')[1];
+
+        // Check whether it is the root path and if so -> show 'home' as currently active
+        if (!controller) {
+            controller = 'home';
+        }
+
+        if (controller === 'discussions' || controller === 'global_chat') {
+            controller = 'chat';
+        }
+        $(`ul li[controller=${controller}] a`)[0].classList.add('active')
+    }) ();
+});
+
+// Validates notebook, note and quick_note in the Front-end
+function validateForm() {
+    // Extract the values of the form elements
+    let currentPath = location.pathname.split("/")[1];
+    currentPath = currentPath.substring(0, currentPath.length - 1)
+
+    const title = $(`#${currentPath}_title`).val();
+    let content;
+
+    // Because the content column in notebooks is called description.
+    if($(`#${currentPath}_content`).length){
+        content = $(`#${currentPath}_content`).val();
+    } else if($(`#${currentPath}_description`).length){
+        content = $(`#${currentPath}_description`).val();
+    }
+
+    let isCorrect = true;
+
+    // Specify the errors in the front end
+    if (!title) {
+        $('#title-error').text('Title must not be empty!');
+        isCorrect = false;
+    } else {
+        $('#title-error').text('');
+    }
+
+    if(!content || typeof content === "undefined") {
+        $('#content-error').text('Content must not be empty!');
+        isCorrect = false;
+    } else {
+        $('#content-error').text('');
+    }
+
+    // Either submit the form or make the button clickable after half a second.
+    if (isCorrect) {
+        $('form')[0].submit();
+    } else{
+        $('.invalid-feedback').css('display', 'block');
+        setTimeout(function () {
+            $('input[type=submit]').removeAttr('disabled');
+        }, 500);
+    }
+
+    return isCorrect;
+}
+
+function htmlDecode(input){
+    var e = document.createElement('textarea');
+    e.innerHTML = input;
+    // handle case of empty input
+    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+}
+
+/**
+ * Add a message container on the bottom of the currently displayed ones.
+ * @param message message object
+ * @param shouldScroll do we have to scroll to the bottom of the chat container
+ * @param incrementMessageCounter whether the function should try to increment the total messages
+ * count
+ */
+function addMessageContainerOnBottomChat(message, shouldScroll, incrementMessageCounter) {
+    // Append the new message in the end of the chat with animation and a scrolling callback
+    $('#chat').append(createChatMessage(message).hide().show(600, function() {
+        if (shouldScroll) {
+            // Scroll to the bottom with animation
+            $("#chat").animate({ scrollTop: $('#chat').prop("scrollHeight")}, 1500);
+        }
+    }));
+
+    if (incrementMessageCounter) {
+        // Update the value of total messages if the current view is for a discussion
+        const messagesCount = $('#messages-count');
+        if (messagesCount) {
+            messagesCount.text(parseInt(messagesCount.text()) + 1);
+        }
+    }
+}
+
+/**
+ * Requests for more messages send in the past to be displayed to the user.
+ */
+function requestMoreMessages(discussion_id) {
+    // Hide the arrow calling the method
+    $('#up-arrow').hide();
+
+    // Show the loader
+    $('#loader-container').show();
+
+    // Get the first displayed message
+    const firstMessage = $("#chat").children()
+        .filter(function(index, element) { return element.classList.contains('message-box');})[0];
+
+    // Get its date and send it through the socket
+    const firstMessageDate = $(firstMessage).children()[1].firstChild.innerText;
+
+    if (discussion_id) {
+        App.socket.getPreviousDiscussionMessages(firstMessageDate, discussion_id);
+    } else {
+        App.socket.getPreviousGlobalMessages(firstMessageDate);
+    }
+}
+
+/**
+ * Add a message container on top of the currently displayed ones.
+ * @param messages messages objects
+ * @param are_there_more are there more in the server
+ */
+function addMessageContainersOnTopOfChat(messages, are_there_more) {
+    for (const message of messages.reverse()) {
+        // For each message -> create message container and prepend with animation
+        createChatMessage(message).insertAfter($('#up-arrow')).hide().show('slow');
+    }
+
+    // Hide loading
+    $('#loader-container').hide();
+
+    // If there are more messages show to arrow-up
+    if (are_there_more) {
+        $('#up-arrow').show();
+    }
+}
+
+/**
+ * Create a chat message HTML fragment
+ * @param message the message object
+ * @returns {jQuery.fn.init|jQuery|HTMLElement} the newly created HTML fragment using jQuery
+ */
+function createChatMessage(message) {
+    for (const key in message) {
+        // Decode all encoded characters, because $.text will decode them again
+        if (!message.hasOwnProperty(key)) continue;
+        message[key] = htmlDecode(message[key]);
+    }
+    const $messageBox = $('<div class="row mb-2 message-box">');
+
+    const $messageContentRow = $('<div class="col-12">');
+    const $messageContent = $('<div class="col-lg-7 col-md-8 col-sm-9" style="margin-bottom: 0;">');
+    $messageContent.append(`<img src="${message.user_image}" class="rounded-circle mr-2 mt-1" height="40" width="40" alt="user image"/>`).append(message.message_content);
+    $messageContentRow.append($messageContent);
+
+    $messageBox.append($messageContentRow);
+
+    const $dataContentRow = $('<div class="col-12">');
+    const $dataContent = $('<div style="font-size: 10pt">').text(message.received_at);
+    $dataContentRow.append($dataContent);
+
+    $messageBox.append($dataContentRow);
+
+    // Check whether the current user sent the message or they were the one who received it
+    if ($("body").attr("data-username") === message.user_name) {
+        $dataContent.addClass("float-right");
+        $messageContent.addClass("message-sent float-right")
+            .append('<hr style="margin: 10px 0 0 0"/><small><%= image_tag("send-by.png", alt: "sent by", height: "25px") %> you</small>');
+    } else {
+        $messageContent.addClass("message-received")
+            .append(`<hr style="margin: 10px 0 0 0"/><small><%= image_tag("receive-by.png", alt: "receive by", height: "25px") %> ${message.user_name}<small>`);
+    }
+
+    return $messageBox;
+}
+
+//= require serviceworker-companion

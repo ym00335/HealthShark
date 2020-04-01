@@ -1,0 +1,43 @@
+<h1>Friends</h1>
+<div class="panel panel-default">
+
+<%#= render 'friends/lookup' %>
+  <% if @friends.count > 0  || @requested_friends.count > 0 %>
+    <h2 class="text-center panel panel-primary">My Friends</h2>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th> Request </th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @friends.each do |friend| %>
+        <tr>
+          <td><%= friend.name %></td>
+          <td>
+            <%= link_to "View Profile", user_path(friend), class:"btn btn-primary btn-xs" %>
+            <%= link_to 'Remove Friend', deny_request_path(friend), method: :delete, :confirm => "Are you sure?", :class => "btn btn-xs btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+      <% @requested_friends.each do |requested_friend| %>
+        <tr>
+          <td><%= requested_friend.name %></td>
+          <td>
+            <%= link_to "View Profile", user_path(requested_friend), class:"btn btn-primary btn-xs" %>
+            <%= link_to "Accept", accept_request_path(requested_friend), method: :put, class:"btn btn-success btn-xs" %>
+            <%= link_to "Decline", deny_request_path(requested_friend), method: :delete, class: "btn btn-xs btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="lead container text-center">
+      <i>You don't have any friends yet. Go out and make some.</i>
+      <hr/>
+      <%= image_tag("svg/friends.svg", :alt => "friends", :height => "80", :width => "80") %>
+    </div>
+  <% end %>
+</div>
