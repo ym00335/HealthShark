@@ -21,6 +21,7 @@ en:
     discussions_nav_link: "Discussions"
     logs_nav_link: Calendar
     friends_nav_link: Friends
+    fb_nav_link: Sign in with Facebook
 
   footer:
     title: HealthShark

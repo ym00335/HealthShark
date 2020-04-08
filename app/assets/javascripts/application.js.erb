@@ -12,7 +12,10 @@
 //
 //= require jquery3
 //= require bootstrap-sprockets
+//= require cookiealert
+//= require popper
 //= require jquery_ujs
+//= require conversations
 //= require_tree .
 //= stub serviceworker
 
@@ -184,7 +187,7 @@ function createChatMessage(message) {
 
     const $messageContentRow = $('<div class="col-12">');
     const $messageContent = $('<div class="col-lg-7 col-md-8 col-sm-9" style="margin-bottom: 0;">');
-    $messageContent.append(`<img src="${message.user_image}" class="rounded-circle mr-2 mt-1" height="40" width="40" alt="user image"/>`).append(message.message_content);
+    $messageContent.append(`<a href="<%= 'users/' %>${message["user_id"]}"><img src="${message.user_image}" class="rounded-circle mr-2 mt-1 clickable-img" height="40" width="40" alt="user image"/></a>`).append(message.message_content);
     $messageContentRow.append($messageContent);
 
     $messageBox.append($messageContentRow);

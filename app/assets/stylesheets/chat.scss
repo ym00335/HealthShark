@@ -5,21 +5,6 @@
 @import "bootstrap";
 @import "normalize-rails";
 
-.rounded-div {
-  padding: 5px 15px 5px 15px !important;
-  margin-bottom: 5px;
-  display: inline-block;
-  border-radius: 6px;
-}
+$light_blue: #CDECE4;
+$medium_blue: #73B0A0;
 
-.message-received {
-  background-color: #056193 !important;
-  color: white !important;
-  @extend .rounded-div;
-}
-
-.message-sent {
-  background-color: #A6D9CC;
-  color: white !important;
-  @extend .rounded-div;
-}

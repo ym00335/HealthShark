@@ -1,16 +1,26 @@
-<div class="panel panel-default">
-  <h1 align="center" class="panel panel-primary">
-    <img src="<%= url_for(@user.image_url) unless @user.image_url.nil? %>" class="avatar"> User:
-    <b><%= @user.name %></b></h1>
-  <h3>User Email: <%= @user.email %></h3>
-  <% if @user.requested_friends.exists?(current_user.id) %>
-    <h4>You have already sent a friend request to <%=@user.name %> </h4>
-  <%end %>
-  <br>
-  <br>
-  <br>
-  <hr>
-  <% if current_user.id && current_user.id != @user.id && !current_user.friends.exists?(@user.id) && !current_user.pending_friends.exists?(@user.id) && !@user.requested_friends.exists?(current_user.id)%>
-    <%= link_to "Send Friend Request", add_friend_path(@user), method: :post, class: "btn btn-info z-depth-1a", align: "right"%>
-  <% end %>
+
+<div class="row">
+  <div class="col-lg-5 col-xl-4 figure text-center">
+    <%= if @user.image.present?
+          image_tag @user.image_url, class: 'img-thumbnail', size: "200x200"
+        else
+          image_tag 'default-user-img.png', class: 'img-thumbnail', size: "200x200"
+        end %>
+    <h2 class="text-center">
+      <i><%= @user.name %></i>
+    </h2>
+  </div>
+  <div class="col-lg-7 col-xl-8">
+    <h3>Email: <%= @user.email %></h3>
+    <% if @user.requested_friends.exists?(current_user.id) %>
+      <h4>You have already sent a friend request to <%=@user.name %> </h4>
+    <%end %>
+  </div>
 </div>
+<hr>
+  <% if @user.friends.exists?(current_user.id) %>
+    <%= link_to 'Send a message', new_personal_message_path(receiver_id: @user), class: "btn btn-info z-depth-1a", align: "right" %>
+  <% end %>
+  <% if current_user.id && current_user.id != @user.id && !current_user.friends.exists?(@user.id) && !current_user.pending_friends.exists?(@user.id) && !@user.requested_friends.exists?(current_user.id) %>
+    <%= link_to "Send Friend Request", add_friend_path(@user), method: :post, class: "btn btn-info z-depth-1a", align: "right" %>
+  <% end %>

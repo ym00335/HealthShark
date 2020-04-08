@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
   # Set the default protection
   protect_from_forgery with: :null_session
   # Configure the permitted parameters for the devise before each action
@@ -30,6 +31,6 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :name) }
-    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :current_password, :name, :is_female, :date_of_birth, :image, :height, :weight, :allergies, :diet) }
+    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :current_password, :name, :is_female, :date_of_birth, :image) }
   end
 end

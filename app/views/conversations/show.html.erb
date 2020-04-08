@@ -1,0 +1,19 @@
+<h1>Chatting with <%= @conversation.with(current_user).name %></h1>
+
+
+  <div id="conversation-main">
+  
+    <%= render :partial => "personal_messages/personal_message", :formats => [:html], locals: {personal_messages: @personal_messages, personal_messages_count: @personal_messages_count} %>
+
+    <%= form_for @personal_message do |f| %>
+
+    <%= hidden_field_tag 'conversation_id', @conversation.id %>
+    
+    <div style="overflow-y: auto">
+    <%= f.text_field :body, class: "form-control", id: "message" %>
+    <%= f.submit "Send private message", class: "btn btn-primary" %>
+    </div>
+
+<% end %>
+      
+  </div>

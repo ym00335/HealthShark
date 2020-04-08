@@ -28,10 +28,8 @@
     </div>
 
   </div>
-    <div class="row">
-      <div class="col">
-  <div class="form-group">
 
+  <div class="form-group mt-3">
     <label>Gender</label>
     <div class="btn-group" data-toggle="buttons">
       <label id="female-radio" class="btn btn-light" value="true">
@@ -39,54 +37,13 @@
       <label id="male-radio" class="btn btn-light" value="false">
         <%= f.radio_button :is_female, false, class: 'custom-control-input' %>Male</label>
     </div>
-
-      </div>
-      </div>
-
-      <div class="col">
-          <div class="form-group">
-    <%= f.label :diet %>
-    <%= f.select :diet, options_for_select([['Lose Weight'], ['Gain Weight']]), class: 'form-control'%>
-    </div>
-      </div>
-      </div>
-
-
-
+  </div>
 
   <script>
     $(document).ready(() => {
         $('input[checked=checked]').parent().addClass('active');
     });
   </script>
-
-
-    <div class="row">
-      <div class="col-lg-7 col-xl-2">
-        <div class="form-group">
-          <%= f.label :height %>
-          <%= f.text_field :height, autofocus: true, class: 'form-control' %>
-        </div>
-      </div>
-      <div class="col-lg-7 col-xl-2">
-        <div class="form-group">
-          <%= f.label :weight %>
-          <%= f.text_field :weight, autofocus: true, class: 'form-control' %>
-        </div>
-      </div>
-      <div class="col-lg-7 col-xl-8">
-        <div class="form-group">
-          <%= f.label :allergies %>
-
-          <%= f.select :allergies, options_for_select([['Nuts'], ['Lactose']]), class: 'form-control'%>
-    
-        </div>
-      </div>
-    </div>
-
-
-
-
 
   <div class="form-group">
     <%= f.label :date_of_birth %>

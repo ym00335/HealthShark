@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_31_224635) do
+ActiveRecord::Schema.define(version: 2020_04_02_012345) do
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "author_id"
+    t.integer "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id", "receiver_id"], name: "index_conversations_on_author_id_and_receiver_id", unique: true
+    t.index ["author_id"], name: "index_conversations_on_author_id"
+    t.index ["receiver_id"], name: "index_conversations_on_receiver_id"
+  end
 
   create_table "discussions", force: :cascade do |t|
     t.text "topic", null: false
@@ -53,6 +63,16 @@ ActiveRecord::Schema.define(version: 2020_03_31_224635) do
     t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
+  create_table "personal_messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "conversation_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_personal_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_personal_messages_on_user_id"
+  end
+
   create_table "sent_mails", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -73,14 +93,18 @@ ActiveRecord::Schema.define(version: 2020_03_31_224635) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.datetime "date_of_birth"
-    t.boolean "is_female"
     t.string "image"
-    t.integer "height"
-    t.integer "weight"
-    t.string "diet"
-    t.text "allergies"
+    t.string "provider"
+    t.string "uid"
+    t.string "fb_name"
+    t.text "fb_image"
+    t.string "name"
+    t.string "username"
+    t.datetime "encrypted_date_of_birth"
+    t.datetime "encrypted_date_of_birth_iv"
+    t.boolean "encrypted_is_female"
+    t.boolean "encrypted_is_female_iv"
+    t.boolean "is_signed_in", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -18,7 +18,7 @@ class SocketChannel < ApplicationCable::Channel
     # try to save the message and if successful -> send to all listening users
     if message.save
       ActionCable.server.broadcast "global_chat", message_content: data['message'], user_name: message.sender.name,
-             user_image: GlobalChatController.get_chat_image_path(message.sender),
+             user_image: GlobalChatController.get_chat_image_path(message.sender), user_id: message.sender.id,
              action: "global_chat", received_at: message.created_at.strftime("%T %d/%m/%y")
 
     end
@@ -34,7 +34,7 @@ class SocketChannel < ApplicationCable::Channel
       # resend to all users listening for the specific discussion
       if message.save
         ActionCable.server.broadcast "discussion_chat#{params['discussion_id']}", message_content: data['message'], user_name: message.sender.name,
-                                     user_image: GlobalChatController.get_chat_image_path(message.sender),
+                                     user_image: GlobalChatController.get_chat_image_path(message.sender), user_id: message.sender.id,
                                      action: "discussion_chat", received_at: message.created_at.strftime("%T %d/%m/%y")
 
       end
@@ -52,7 +52,7 @@ class SocketChannel < ApplicationCable::Channel
 
     # Add all messages' content in the DTO
     messages.each do |message|
-      obj = {message_content: message.content, user_name: message.sender.name,
+      obj = {message_content: message.content, user_name: message.sender.name, user_id: message.sender.id,
              user_image: GlobalChatController.get_chat_image_path(message.sender),
              received_at: message.created_at.strftime("%T %d/%m/%y")}
       dto[:messages].push(obj)
@@ -75,7 +75,7 @@ class SocketChannel < ApplicationCable::Channel
 
     # Add the contents for each message ands its owner
     messages.each do |message|
-      obj = {message_content: message.content, user_name: message.sender.name,
+      obj = {message_content: message.content, user_name: message.sender.name, user_id: message.sender.id,
              user_image: GlobalChatController.get_chat_image_path(message.sender),
              received_at: message.created_at.strftime("%T %d/%m/%y")}
       dto[:messages].push(obj)

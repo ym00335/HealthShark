@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  get 'users/index'
   mount ActionCable.server => '/chatcable'
 
   # Devise sign out to destroy the current session
-  devise_for :users do
+  devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks", :sessions => "users/sessions"} do
     get '/users/sign_out' => 'devise/sessions#destroy'
+    get 'users/index' => 'users#index'
   end
 
   resources :users, :only => [:show] do
@@ -11,6 +13,10 @@ Rails.application.routes.draw do
       get :friends
     end
   end
+  resources :personal_messages, only: [:new, :create]
+  resources :conversations, only: [:index, :show]
+
+  get 'conversations/index', to: 'conversations#index'
 
   get 'friends', to: 'friendships#index', as: 'friends'
   post 'friends/create/:id', to: 'friendships#create', as: 'add_friend'
@@ -30,6 +36,8 @@ Rails.application.routes.draw do
     # Specify the custom routes
     get 'global_chat', to: 'global_chat#index'
     get 'global_chat/subscribe'
+
+    get 'users/:id', to: 'users#show'
 
     get 'contacts/index'
     post 'mail/send', to: 'contacts#send_mail'

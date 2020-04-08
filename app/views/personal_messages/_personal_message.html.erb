@@ -1,0 +1,34 @@
+<div id="chat" class="container">
+    <div id="loader-container" class="row justify-content-center mb-3" style="display: none;">
+
+          <div id="loader"></div>  
+
+    </div>
+
+    <script type="text/javascript">
+
+        $(document).ready(() => {
+
+            <% personal_messages.each do |personal_message| %>
+
+                addMessageContainerOnBottomChat({
+
+                    message_content: "<%= personal_message.body %>",
+
+                    received_at: "<%= personal_message.created_at.strftime("%T %d/%m/%y") %>",
+
+                    user_name: "<%= personal_message.user.name %>",
+
+                    user_id: "<%= personal_message.user_id %>",
+
+                     user_image: '<%= GlobalChatController.get_chat_image_path(personal_message.user) %>',
+
+            }, <%= personal_message == personal_messages.last %>);
+
+          <% end %>
+
+        });
+
+    </script>
+
+</div>

@@ -1,63 +1,124 @@
 <header id="header" class="navbar navbar-expand-lg navbar-dark">
+
   <a href="/">
-    <%= image_tag("logo.png", :alt => "logo", :class => "float-left mr-0 mr-md-2 clickable-img", :height => "60", :width => "60") %>
+
+    <%= image_tag("logo.png", :alt => "logo", :class => "float-left mr-0 mr-md-2 clickable-img", :height => "40", :width => "40") %>
+
   </a>
+
   <a class="navbar-brand font-weight-bold" href="/"><%= t('app_title') %></a>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
+
     <span class="navbar-toggler-icon"></span>
+
   </button>
+
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
     <ul class="navbar-nav mr-auto">
+
+      <li controller="home" class="nav-item">
+
+        <%= link_to t('nav_links.home_nav_link'), home_index_path, :class => 'nav-link' %>
+
+      </li>
+
       <% if user_signed_in? %>
+
       <li controller="contacts" class="nav-item">
+
       <%= link_to contacts_index_url, :style=> 'text-decoration: none' do %>
-        <span class= 'nav-link'>
+
+        <span class='nav-link'>
+
         <%= image_tag("chats-icon.png", :class=> "navbar-icon") %>
+
         <%= t('nav_links.contacts_nav_link') %>
+
         </span>
       <% end %>
-      </li>
-        <li controller="calendar" class="nav-item">
-          <%= link_to t('nav_links.logs_nav_link'), calendar_index_url, :class => 'nav-link' %>
         </li>
+
         <li controller="friends" class="nav-item">
+
           <%= link_to t('nav_links.friends_nav_link'), friends_url, :class => 'nav-link' %>
+
         </li>
+
         <li controller="chat" class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= image_tag("chats-icon.png", :class=> "navbar-icon") %> <%= t('nav_links.chat_nav_link') %></a>
+
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= image_tag("chats-icon.png", :class=> "navbar-icon") %> <%= t('nav_links.chat_nav_link') %> </a>
+
         <div class="dropdown-menu">
+
           <%= link_to t('nav_links.global_chat_nav_link'), global_chat_path, :class => 'dropdown-item' %>
+
           <%= link_to t('nav_links.discussions_nav_link'), discussions_path, :class => 'dropdown-item' %>
+        
         </div>
-      </li>
-      <%end %>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-      <% if user_signed_in? %>
-        <li class="nav-item">
-          <%= if current_user.image.present?
-              link_to (image_tag current_user.image_url, class: 'rounded-circle mt-1', size: "40x40"), edit_user_registration_path
-            else
-              # Assuming you have a default.jpg in your assets folder
-              link_to (image_tag 'default-user-img.png', class: 'rounded-circle mt-1', size: "40x40"), edit_user_registration_path
-            end %>
+
         </li>
-        <li controller="users" class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><%= current_user.email %></strong></a>
-          <div class="dropdown-menu">
-            <%= link_to t('nav_links.edit_profile_nav_link'), edit_user_registration_path, :class => 'dropdown-item' %>
-            <%= link_to t('nav_links.signout_nav_link'), destroy_user_session_path, method: :delete, :class => 'dropdown-item' %>
-          </div>
-        </li>
-      <% else %>
-        <li controller="users" class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><strong>LOG IN</strong></a>
-          <div class="dropdown-menu">
-            <%= link_to t('nav_links.signin_nav_link'), new_user_session_path, :class => 'dropdown-item' %>
-            <%= link_to t('nav_links.register_nav_link'), new_user_registration_path, :class => 'dropdown-item' %>
-          </div>
-        </li>
+
       <% end %>
+
     </ul>
+
+    <ul class="navbar-nav ml-auto">
+
+      <% if user_signed_in? %>
+
+        <li class="nav-item">
+
+          <%= if current_user.image.present?
+
+                link_to (image_tag current_user.image_url, class: 'rounded-circle mt-1', size: "40x40"), edit_user_registration_path
+
+              else
+
+                # Assuming you have a default.jpg in your assets folder
+
+                link_to (image_tag 'default-user-img.png', class: 'rounded-circle mt-1', size: "40x40"), edit_user_registration_path
+
+              end %>
+
+        </li>
+
+        <li controller="users" class="nav-item dropdown">
+
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong><%= current_user.email %></strong></a>
+
+          <div class="dropdown-menu">
+
+            <%= link_to t('nav_links.edit_profile_nav_link'), edit_user_registration_path, :class => 'dropdown-item' %>
+
+            <%= link_to t('nav_links.signout_nav_link'), destroy_user_session_path, method: :delete, :class => 'dropdown-item' %>
+
+          </div>
+
+        </li>
+
+      <% else %>
+
+        <li controller="users" class="nav-item dropdown">
+
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>Not Signed</strong></a>
+
+          <div class="dropdown-menu">
+
+            <%= link_to t('nav_links.signin_nav_link'), new_user_session_path, :class => 'dropdown-item' %>
+
+            <%= link_to t('nav_links.register_nav_link'), new_user_registration_path, :class => 'dropdown-item' %>
+
+          </div>
+
+        </li>
+
+      <% end %>
+
+    </ul>
+
   </div>
+
 </header>

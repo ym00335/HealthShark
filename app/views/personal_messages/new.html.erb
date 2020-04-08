@@ -1,0 +1,11 @@
+<h1>New message to <%= @receiver.name %></h1>
+
+<%= form_for @personal_message do |f| %>
+  <%= hidden_field_tag 'receiver_id', @receiver.id %>
+  <%= hidden_field_tag 'conversation_id', @conversation.id %>
+  <%= f.text_field :body, class: "form-control", id: "message" %>
+
+
+  <%= f.submit "Send private message", class: "btn btn-primary" %>
+
+<% end %>
